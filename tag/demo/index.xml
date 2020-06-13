@@ -13,10 +13,18 @@
     </image>
     
     <item>
-      <title>External Project</title>
-      <link>/project/external-project/</link>
+      <title>CoMo Modeling Tools</title>
+      <link>/project/como-tools/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/external-project/</guid>
+      <guid>/project/como-tools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Topic Modeling</title>
+      <link>/project/topic-modelling/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/project/topic-modelling/</guid>
       <description></description>
     </item>
     
