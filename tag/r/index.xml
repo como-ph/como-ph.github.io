@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags | CoMo-PH</title>
-    <link>/tags/</link>
-      <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
-    <description>Tags</description>
+    <title>R | CoMo-PH</title>
+    <link>/tag/r/</link>
+      <atom:link href="/tag/r/index.xml" rel="self" type="application/rss+xml" />
+    <description>R</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo-PH 2020</copyright><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>Tags</title>
-      <link>/tags/</link>
+      <title>R</title>
+      <link>/tag/r/</link>
     </image>
+    
+    <item>
+      <title>CoMo modelling tool for the Philippines</title>
+      <link>/project/como-tools/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/como-tools/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
