@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CoMo Consortium | CoMo Philippines</title>
+    <link>/category/como-consortium/</link>
+      <atom:link href="/category/como-consortium/index.xml" rel="self" type="application/rss+xml" />
+    <description>CoMo Consortium</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>CoMo Consortium</title>
+      <link>/category/como-consortium/</link>
+    </image>
+    
+    <item>
+      <title>The COVID-19 International Modelling Consortium (CoMo Consortium)</title>
+      <link>/post/covid19-modeling-consortium/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/covid19-modeling-consortium/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -5,12 +5,28 @@
     <link>/author/chris-mercado/</link>
       <atom:link href="/author/chris-mercado/index.xml" rel="self" type="application/rss+xml" />
     <description>Chris Mercado</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Tue, 26 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/author/chris-mercado/avatar_huf4874e929d75535f10def1b9178bc16a_201838_270x270_fill_q90_lanczos_center.jpg</url>
       <title>Chris Mercado</title>
       <link>/author/chris-mercado/</link>
     </image>
+    
+    <item>
+      <title>Impact of epidemiologic models on government policy and response to the COVID-19 pandemic in the Philippines</title>
+      <link>/post/covid19-topic-modeling/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/covid19-topic-modeling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model</title>
+      <link>/post/covid19-modeling-tools/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/covid19-modeling-tools/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
