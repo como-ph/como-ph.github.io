@@ -77,6 +77,14 @@
     </item>
     
     <item>
+      <title>Use of text analysis and topic modelling in policy analysis</title>
+      <link>/project/topic-modelling/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/topic-modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>CoMo modelling tool for the Philippines</title>
       <link>/project/como-tools/</link>
       <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
@@ -85,26 +93,18 @@
     </item>
     
     <item>
-      <title>COVID-19 International Modeling Consortium (CoMo)</title>
+      <title>The utility and impact of epidemiological models in the development of policy and formulation of interventions during an epidemic</title>
       <link>/project/policy-analysis/</link>
-      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
       <guid>/project/policy-analysis/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>COVID-19 International Modelling Consortium (CoMo)</title>
-      <link>/project/como/</link>
-      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/project/como/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>COVID-19 International Modelling Consortium (CoMo) in the Philippines</title>
-      <link>/project/como-ph/</link>
-      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/project/como-ph/</guid>
+      <title>COVID-19 Situation in the Philippines</title>
+      <link>/post/covid19-situation-philippines/</link>
+      <pubDate>Thu, 09 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/post/covid19-situation-philippines/</guid>
       <description>&lt;h2 id=&#34;evolution-of-the-pandemic-in-the-philippines&#34;&gt;Evolution of the pandemic in the Philippines&lt;/h2&gt;
 &lt;p&gt;On 11th of January 2020, the Philippines 
 &lt;a href=&#34;https://www.doh.gov.ph&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Department of Health&lt;/a&gt; issued its first advisory concerning persons who had travel history to Wuhan, China which at that time was the epicentre of the COVID-19 outbreak. The issuance of this advisory was triggered by the first death attributable to COVID-19 in China. On the 21st of January, the first patient-under-investigation (PUI) who happened to be a traveler from China was investigated and was pronounced as negative of COVID-19. One week after (Jan. 28), the DOH convened the Inter-agency Task Force on Emerging and Re-emerging Infections (IATF-EID). The nCOV-tracker (&lt;a href=&#34;https://ncovtracker.doh.gov.ph/),&#34;&gt;https://ncovtracker.doh.gov.ph/),&lt;/a&gt; which is a public dashboard that shows the number of PUM, PUI, and confirmed cases, was also launched on the same day. The DOH convened the first command conference on the next day with regional directors as participants. On Jan. 30, the first confirmed case of COVID-19, which was an imported case from Wuhan, China, was declared. This happened during the same day when the World Health Organization (WHO) had declared COVID-19 as a Public Health Emergency of International Concern. The next day, a travel ban to and from Hubei, China was promulgated by the Philippine government.&lt;/p&gt;
@@ -175,6 +175,35 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;In this modelling, &lt;em&gt;peak date&lt;/em&gt; refers to the day with the highest number of cases. The projected maximum number of active confirmed positive cases for the duration of the outbreak is referred to as the “Peak of active confirmed cases”. Meanwhile, health system capacity was defined as a function of (1) testing capacity and (2) health management capacity. Testing capacity refers to the availability of test kits, testing centers with quantitative polymerase chain reaction (qPCR) machines, trained health workers to perform testing, and turnaround time of test results. On the other hand, health management capacity refers to the availability of health facilities, medical devices and health workers to manage the confirmed positive cases so that they are isolated and given proper medical care.&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>COVID-19 International Modelling Consortium (CoMo)</title>
+      <link>/project/como/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/como/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>COVID-19 International Modelling Consortium (CoMo) in the Philippines</title>
+      <link>/project/como-ph/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/como-ph/</guid>
+      <description>&lt;p&gt;The application of the CoMo Consortium model to the Philippines context is the main project of the CoMo Philippines team and is the reason for the formation of the team. The CoMo Consortium model is described 
+&lt;a href=&#34;https://www.tropicalmedicine.ox.ac.uk/files/news-files/comoconsortium_description_may2020.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; in more detail.&lt;/p&gt;
+&lt;p&gt;The CoMo Philippines team seeks to answer the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;How can the CoMo Consortium model inform preparations for a post-lockdown scenario?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What combination of interventions could work best in the Philippines?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The national team will compare the CoMo Consortium model against other, locally developed models. This will support the development of a local model that better reflects the dynamic local situation and appropriate responses to the COVID-19 epidemic in the Philippines. Other models being used are the official FASSTER COVID-19 module and the UP COVID-19 Pandemic Response Team model.&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 </description>
@@ -344,14 +373,6 @@ Three
       <guid>/terms/</guid>
       <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Topic Modeling</title>
-      <link>/project/topic-modelling/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/topic-modelling/</guid>
-      <description></description>
     </item>
     
     <item>
