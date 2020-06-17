@@ -29,22 +29,22 @@
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/author/chris-mercado/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/author/ernest-guevarra/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -54,7 +54,7 @@
   
   <url>
     <loc>/author/john-robert-medina/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -79,7 +79,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -94,22 +94,47 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tag/text-analysis/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tag/topic-modelling/</loc>
-    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/project/topic-modelling/</loc>
     <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/covidphtext/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/iatf/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/rstats/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/software/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/text-data/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
