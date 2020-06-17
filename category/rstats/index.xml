@@ -5,12 +5,64 @@
     <link>/category/rstats/</link>
       <atom:link href="/category/rstats/index.xml" rel="self" type="application/rss+xml" />
     <description>rstats</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Fri, 22 May 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Tue, 26 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/img/como-ph.png</url>
       <title>rstats</title>
       <link>/category/rstats/</link>
     </image>
+    
+    <item>
+      <title>Sentiment analysis</title>
+      <link>/post/sentiment-analysis/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/sentiment-analysis/</guid>
+      <description>
+
+
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment1&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment1-1.png&#34; alt=&#34;Sentiment analysis of IATF resolutions&#34; width=&#34;1440&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: Sentiment analysis of IATF resolutions
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The resolutions over time generally starts off on a positive note (except for resolution 14 on 20 March 2020 and resolution 15 on 25 March 2020).&lt;/p&gt;
+&lt;p&gt;Early on in the pandemic, in the first two weeks of March 2020 (resolutions up to 17 March 2020), the resolutions generally starts off on a mildly positive note but almost immediately gets to a more negative sentiment as the resolution progresses to the end. This is particularly evident in the first two resolution in the first week of March. By the second week of March, some small spikes of positivity is noted towards the end of the resolutions but still with a more negative tone at the end.&lt;/p&gt;
+&lt;p&gt;By the second week of March 2020 up to early April 2020, there is a shift to a mostly more positive sentiment to the resolutions right from the start. A few sharp troughs of negativity on the 25th of March and the 3rd of April 2020 can be noted.&lt;/p&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2a&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment2a-1.png&#34; alt=&#34;Words that contribute to positive and negative sentiment in the IATF resolutions&#34; width=&#34;768&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Words that contribute to positive and negative sentiment in the IATF resolutions
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2b&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment2b-1.png&#34; alt=&#34;Average sentiment value for IATF resolutions by month&#34; width=&#34;768&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 3: Average sentiment value for IATF resolutions by month
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2c&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment2c-1.png&#34; alt=&#34;Sentiment value across all resolutions by month&#34; width=&#34;1152&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 4: Sentiment value across all resolutions by month
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment3&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment3-1.png&#34; alt=&#34;The most common words in the IATF resolutions&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5: The most common words in the IATF resolutions
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment4&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment4-1.png&#34; alt=&#34;Most common positive and negative word in the IATF resolutions&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 6: Most common positive and negative word in the IATF resolutions
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Creating text data from IATF resolutions for use in text analysis</title>
