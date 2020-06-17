@@ -474,14 +474,6 @@ iatfResolution29 &amp;lt;- tibble::tibble(y)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>comoparams</title>
-      <link>/project/como-tools/</link>
-      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
-      <guid>/project/como-tools/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model</title>
       <link>/post/covid19-modeling-tools/</link>
       <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
