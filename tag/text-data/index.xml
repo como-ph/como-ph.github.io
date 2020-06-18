@@ -30,7 +30,7 @@
 
 &lt;p&gt;In line with our proposed project on use of text analysis and topic modelling for conducting policy analysis in relation to the &lt;strong&gt;COVID-19&lt;/strong&gt; pandemic response in the Philippines, we first had to identify what sources of text were most appropriate for our purpose and then assess how we can extract text from these sources for our purposes. We knew it was always going to be a balance between having the most ideal sources of text data for what we want to do and those sources that could be mined of their text data in a reasonably efficient way.&lt;/p&gt;
 &lt;p&gt;In our search for sources, we found out about the IATF and its role/mandate to respond to the issues concerning emerging infectious diseases in the Philippines. The IATF was convened in early January 2020 in response to the growing outbreak in Wuhan, China. Since then, we found that the task force has released several resolutions that reflected the national government’s on-going assessment of the evolution and spread of COVID-19 and it’s intended response. Given this, we felt that the IATF resolutions were the key manifestation of the national government’s overarching policy with regard go the COVID-19 pandemic from which other more detailed and specific departmental and sub-national policies were derived from.&lt;/p&gt;
-&lt;p&gt;We noted that the &lt;a href=&#34;https://www.doh.gov.ph&#34;&gt;Department of Health&lt;/a&gt;, which chairs the IATF, have routinely uploaded to their &lt;a href=&#34;http://doh.gov.ph/COVID-19/IATF-Resolutions&#34;&gt;website&lt;/a&gt; copies of resolutions once they have been formally endorsed and signed by all departmental members. We later found out that IATF resolutions were also released via the country’s official journal, The Official Gazette, online via its &lt;a href=&#34;https://www.officialgazette.gov.ph/section/laws/other-issuances/inter-agency-task-force-for-the-management-of-emerging-infectious-diseases-resolutions/&#34;&gt;website&lt;/a&gt;. Based on these considerations, we decided to focus on using the IATF resolutions for our policy analysis project.&lt;/p&gt;
+&lt;p&gt;We noted that the &lt;a href=&#34;https://www.doh.gov.ph&#34;&gt;Department of Health&lt;/a&gt;, which chairs the IATF, have routinely uploaded to their &lt;a href=&#34;http://doh.gov.ph/COVID-19/IATF-Resolutions&#34;&gt;website&lt;/a&gt; copies of resolutions once they have been formally endorsed and signed by all departmental members. We later found out that IATF resolutions were also released via the country’s official journal, &lt;a href=&#34;https://www.officialgazette.gov.ph&#34;&gt;The Official Gazette&lt;/a&gt;, online via its &lt;a href=&#34;https://www.officialgazette.gov.ph/section/laws/other-issuances/inter-agency-task-force-for-the-management-of-emerging-infectious-diseases-resolutions/&#34;&gt;website&lt;/a&gt;. Based on these considerations, we decided to focus on using the IATF resolutions for our policy analysis project.&lt;/p&gt;
 &lt;p&gt;The next challenge was how to extract the text from these resolutions into a data structure and format useful for text analysis and topic modelling. In this post, we describe how we used the &lt;a href=&#34;https://www.r-project.org&#34;&gt;R language for statistical computing&lt;/a&gt; to develop a supervised text extraction workflow described in the diagram below:&lt;/p&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:workflow&#34;&gt;&lt;/span&gt;
 &lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:768px;height:800px;&#34; class=&#34;DiagrammeR html-widget&#34;&gt;&lt;/div&gt;
@@ -52,16 +52,16 @@ Figure 1: Text extraction workflow in R
 &lt;pre&gt;&lt;code&gt;## # A tibble: 41 x 7
 ##       id title              date       source type  url               checked   
 ##    &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;              &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;             &amp;lt;date&amp;gt;    
-##  1     9 Recommendations f… 2020-03-03 IATF   reso… https://doh.gov.… 2020-06-16
-##  2    10 Recommendations f… 2020-03-09 IATF   reso… https://doh.gov.… 2020-06-16
-##  3    11 Recommendations f… 2020-03-12 IATF   reso… https://doh.gov.… 2020-06-16
-##  4    12 Recommendations f… 2020-03-13 IATF   reso… https://doh.gov.… 2020-06-16
-##  5    13 Recommendations f… 2020-03-17 IATF   reso… https://doh.gov.… 2020-06-16
-##  6    14 Resolutions Relat… 2020-03-20 IATF   reso… https://doh.gov.… 2020-06-16
-##  7    15 Resolutions Relat… 2020-03-25 IATF   reso… https://doh.gov.… 2020-06-16
-##  8    16 Additional Guidel… 2020-03-30 IATF   reso… https://doh.gov.… 2020-06-16
-##  9    17 Recommendations R… 2020-03-30 IATF   reso… https://doh.gov.… 2020-06-16
-## 10    18 Recommendations R… 2020-04-01 IATF   reso… https://doh.gov.… 2020-06-16
+##  1     9 Recommendations f… 2020-03-03 IATF   reso… https://doh.gov.… 2020-06-17
+##  2    10 Recommendations f… 2020-03-09 IATF   reso… https://doh.gov.… 2020-06-17
+##  3    11 Recommendations f… 2020-03-12 IATF   reso… https://doh.gov.… 2020-06-17
+##  4    12 Recommendations f… 2020-03-13 IATF   reso… https://doh.gov.… 2020-06-17
+##  5    13 Recommendations f… 2020-03-17 IATF   reso… https://doh.gov.… 2020-06-17
+##  6    14 Resolutions Relat… 2020-03-20 IATF   reso… https://doh.gov.… 2020-06-17
+##  7    15 Resolutions Relat… 2020-03-25 IATF   reso… https://doh.gov.… 2020-06-17
+##  8    16 Additional Guidel… 2020-03-30 IATF   reso… https://doh.gov.… 2020-06-17
+##  9    17 Recommendations R… 2020-03-30 IATF   reso… https://doh.gov.… 2020-06-17
+## 10    18 Recommendations R… 2020-04-01 IATF   reso… https://doh.gov.… 2020-06-17
 ## # … with 31 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The result is a &lt;code&gt;tibble&lt;/code&gt; with 7 columns and the number of rows equal to the number of resolutions available from the &lt;a href=&#34;https://www.doh.gov.ph&#34;&gt;DoH&lt;/a&gt; website on the day the output was produced. The column named &lt;code&gt;checked&lt;/code&gt; in the output indicates when it was produced. The number of rows of the output may change between two calls to this function as newer resolution/s may have been uploaded from the time the first call was made to the time the second call was made.&lt;/p&gt;
 &lt;p&gt;For the resolutions in &lt;a href=&#34;https://www.officialgazette.gov.ph&#34;&gt;The Official Gazette&lt;/a&gt;, we created the &lt;code&gt;get_iatf_gazette&lt;/code&gt; function. As with the &lt;code&gt;get_iatf_links&lt;/code&gt; function, this requires the URL to the IATF resolutions webpage in &lt;a href=&#34;https://www.officialgazette.gov.ph&#34;&gt;The Official Gazette&lt;/a&gt; which is set at &lt;a href=&#34;https://www.officialgazette.gov.ph/section/laws/other-issuances/inter-agency-task-force-for-the-management-of-emerging-infectious-diseases-resolutions/&#34; class=&#34;uri&#34;&gt;https://www.officialgazette.gov.ph/section/laws/other-issuances/inter-agency-task-force-for-the-management-of-emerging-infectious-diseases-resolutions/&lt;/a&gt;. However, a second argument named &lt;code&gt;pages&lt;/code&gt; is required. Unlike the &lt;a href=&#34;https://www.doh.gov.ph&#34;&gt;DoH&lt;/a&gt; page that has all the download links to the resolutions available on a single page, &lt;a href=&#34;https://www.officialgazette.gov.ph&#34;&gt;The Official Gazette&lt;/a&gt; uses pagination to split the information on download links into multiple pages. To be able to get the links of all the resolutions, we would need to supply a vector of the page numbers of all the pages that contains the download links. So, to get the links/URLs for all available resolutions found in the &lt;a href=&#34;https://www.officialgazette.gov.ph&#34;&gt;The Official Gazette&lt;/a&gt; website, we use:&lt;/p&gt;
@@ -69,18 +69,18 @@ Figure 1: Text extraction workflow in R
 &lt;p&gt;after determining from the website that the download links are contained in 6 pages.&lt;/p&gt;
 &lt;p&gt;This gives the following result:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 53 x 7
-##    id    title              date       source type  url               checked   
-##    &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;              &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;             &amp;lt;date&amp;gt;    
-##  1 46    RESOLUTION NO. 46… 2020-06-15 IATF   reso… https://www.offi… 2020-06-16
-##  2 46    RESOLUTION NO. 46… 2020-06-15 IATF   reso… https://www.offi… 2020-06-16
-##  3 45    RESOLUTION NO. 45… 2020-06-10 IATF   reso… https://www.offi… 2020-06-16
-##  4 44    RESOLUTION NO. 44… 2020-06-08 IATF   reso… https://www.offi… 2020-06-16
-##  5 &amp;lt;NA&amp;gt;  OMNIBUS GUIDELINE… 2020-06-03 IATF   reso… https://www.offi… 2020-06-16
-##  6 43    RESOLUTION NO. 43… 2020-06-03 IATF   reso… https://www.offi… 2020-06-16
-##  7 42    RESOLUTION NO. 42… 2020-06-01 IATF   reso… https://www.offi… 2020-06-16
-##  8 41    RESOLUTION NO. 41… 2020-05-29 IATF   reso… https://www.offi… 2020-06-16
-##  9 40    RESOLUTION NO. 40… 2020-05-27 IATF   reso… https://www.offi… 2020-06-16
-## 10 &amp;lt;NA&amp;gt;  OMNIBUS GUIDELINE… 2020-05-22 IATF   reso… https://www.offi… 2020-06-16
+##       id title              date       source type  url               checked   
+##    &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;              &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;             &amp;lt;date&amp;gt;    
+##  1    46 RESOLUTION NO. 46… 2020-06-15 IATF   reso… https://www.offi… 2020-06-17
+##  2    46 RESOLUTION NO. 46… 2020-06-15 IATF   reso… https://www.offi… 2020-06-17
+##  3    45 RESOLUTION NO. 45… 2020-06-10 IATF   reso… https://www.offi… 2020-06-17
+##  4    44 RESOLUTION NO. 44… 2020-06-08 IATF   reso… https://www.offi… 2020-06-17
+##  5    NA OMNIBUS GUIDELINE… 2020-06-03 IATF   reso… https://www.offi… 2020-06-17
+##  6    43 RESOLUTION NO. 43… 2020-06-03 IATF   reso… https://www.offi… 2020-06-17
+##  7    42 RESOLUTION NO. 42… 2020-06-01 IATF   reso… https://www.offi… 2020-06-17
+##  8    41 RESOLUTION NO. 41… 2020-05-29 IATF   reso… https://www.offi… 2020-06-17
+##  9    40 RESOLUTION NO. 40… 2020-05-27 IATF   reso… https://www.offi… 2020-06-17
+## 10    NA OMNIBUS GUIDELINE… 2020-05-22 IATF   reso… https://www.offi… 2020-06-17
 ## # … with 43 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that the ouput is the same in class and structure as the output of the previous function the only difference being that this produces more rows. This is because, as already mentioned earlier, &lt;a href=&#34;https://www.officialgazette.gov.ph&#34;&gt;The Official Gazette&lt;/a&gt; has the first 8 resolutions issued in January and February 2020 and is updated soon after resolutions are endorsed and signed by the IATF compared to that of the &lt;a href=&#34;https://www.doh.gov.ph&#34;&gt;DoH&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -88,9 +88,10 @@ Figure 1: Text extraction workflow in R
 &lt;h3&gt;Downloading the resolutions&lt;/h3&gt;
 &lt;p&gt;The most important information from the output from either functions is the column named &lt;code&gt;url&lt;/code&gt; as this contains the links/URLs to the PDFs of the various resolutions.&lt;/p&gt;
 &lt;p&gt;We automated the download of the resolution PDFs from the &lt;a href=&#34;https://www.doh.gov.ph&#34;&gt;DoH&lt;/a&gt; site using a convenience function called &lt;code&gt;get_iatf_pdf&lt;/code&gt;. In this function, the user can choose which specific resolution to download by specifying the argument &lt;code&gt;id&lt;/code&gt;. If the user wants to download the PDF for Resolution No. 29, the following call is made:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;get_iatf_pdf(id = 29)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iatfLinks %&amp;gt;% 
+  get_iatf_pdf(id = 29)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;which gives the following output:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;/var/folders/fk/s0yv8hhn2cs_nfsmzhm4dmhc0000gn/T//Rtmps01i7R/iatfResolution29.pdf&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;/var/folders/rx/nr32tl5n6f3d_86tn0tc7kc00000gp/T//RtmpEQY0KS/iatfResolution29.pdf&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output is a character vector of the path to the temporary directory created where the PDF for Resolution No. 29 has been stored under the filename &lt;strong&gt;iatfResolution29.pdf&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;It is considered best practice for a function that downloads something from the internet to save this download into a temporary directory as this is more secure and potentially less harmful for the user. It is also advantageous for the user as the PDFs do not have to be saved into the local computer but instead immediately read and used in &lt;a href=&#34;https://www.r-project.org&#34;&gt;R&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -103,7 +104,8 @@ Figure 1: Text extraction workflow in R
 &lt;p&gt;However, the IATF resolutions have been released as downloadable PDF documents produced by scanning the hard copy, signed versions of the resolutions. This type of PDF requires a different function from the &lt;a href=&#34;https://ropensci.org/blog/2016/03/01/pdftools-and-jeroen/&#34;&gt;pdftools&lt;/a&gt; package to extract the data:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pdftools::pdf_ocr_text(pdf = &amp;quot;PATH/TO/SCANNED/PDF&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Whilst this type of document format can be read by &lt;a href=&#34;https://ropensci.org/blog/2016/03/01/pdftools-and-jeroen/&#34;&gt;pdftools&lt;/a&gt; package, the extracted text often requires a lot of manual cleaning and some words or phrases needing to be edited. Below is an example raw output after reading the PDF of IATF Resolution No. 29 and adding some linebreaks.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;get_iatf_pdf(id = 29) %&amp;gt;%                    ## Download PDF of Resolution 29
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iatfLinks %&amp;gt;%                                ## Reference iatfLinks table
+  get_iatf_pdf(id = 29) %&amp;gt;%                  ## Download PDF of Resolution 29
   pdftools::pdf_ocr_text() %&amp;gt;%               ## Extract text using OCR
   stringr::str_split(pattern = &amp;quot;\n&amp;quot;) %&amp;gt;%     ## Split lines of text
   unlist() %&amp;gt;%                               ## Unlist to create data.frame
@@ -142,16 +144,16 @@ Figure 1: Text extraction workflow in R
 ## [28] &amp;quot;&amp;quot;                                                                                             
 ## [29] &amp;quot;WHEREAS, on April 7, 2020, upon the recommendation of the IATF, the President&amp;quot;                
 ## [30] &amp;quot;extended the implementation of the Enhanced Community Quarantine over the entirety of Luzon&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is the reason why this steps 2, 3 and 4 cannot be automated algorithmically.&lt;/p&gt;
-&lt;p&gt;Following is the complete script used to read, clean and structure Resolution No. 29:&lt;/p&gt;
+&lt;p&gt;This is the reason why &lt;strong&gt;Steps 2&lt;/strong&gt;, &lt;strong&gt;3&lt;/strong&gt; and &lt;strong&gt;4&lt;/strong&gt; cannot be automated algorithmically or in an unsupervised approach.&lt;/p&gt;
+&lt;p&gt;Following is the complete script used to read, clean and structure Resolution No. 29 in a manner that is amenable for text analysis:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## Read and re-structure text data
-y &amp;lt;- get_iatf_pdf(id = 29) %&amp;gt;%               ## Download PDF of Resolution 29
+y &amp;lt;- iatfLinks %&amp;gt;%                           ## Reference iatfLinks table
+  get_iatf_pdf(id = 29) %&amp;gt;%                  ## Download PDF of Resolution 29
   pdftools::pdf_ocr_text() %&amp;gt;%               ## Extract text using OCR
   stringr::str_split(pattern = &amp;quot;\n&amp;quot;) %&amp;gt;%     ## Split lines of text
-  unlist() %&amp;gt;%                               ## Unlist to create data.frame
-  head(n = 30)                               ## Show first 30 rows/lines of text
+  unlist()                                   ## Unlist to create data.frame
 
-## Clean data
+## Restructure text and clean
 y &amp;lt;- y[c(14:48, 55:90, 98:109, 115:149)]
 y &amp;lt;- y[y != &amp;quot;&amp;quot;]
 
@@ -168,34 +170,63 @@ y[97] &amp;lt;- stringr::str_replace(string = y[97], pattern = &amp;quot;\\[&amp
 
 y &amp;lt;- stringr::str_trim(string = y, side = &amp;quot;both&amp;quot;)
 
+## Add heading
+y &amp;lt;- c(c(&amp;quot;Republic of the Philippines&amp;quot;,
+         &amp;quot;Inter-Agency Task Force&amp;quot;,
+         &amp;quot;for the Management of Emerging Infectious Diseases&amp;quot;,
+         &amp;quot;Resolution No. 29&amp;quot;,
+         &amp;quot;Series of 2020&amp;quot;,
+         &amp;quot;27 April 2020&amp;quot;,
+         &amp;quot;Recommendations relative to the management&amp;quot;,
+         &amp;quot;of the coronavirus disease 2019 (COVID-19) situation&amp;quot;), y)
+
+## Add section
+pStart &amp;lt;- which(stringr::str_detect(string = y, pattern = &amp;quot;WHEREAS&amp;quot;))[1]
+oStart &amp;lt;- which(stringr::str_detect(string = y, pattern = &amp;quot;RESOLVED&amp;quot;))[1]
+pEnd   &amp;lt;- oStart - 1
+eStart &amp;lt;- which(stringr::str_detect(string = y, pattern = &amp;quot;APPROVED&amp;quot;))[1]
+oEnd   &amp;lt;- eStart - 1
+cStart &amp;lt;- which(stringr::str_detect(string = y, pattern = &amp;quot;CERTIFICATE|CERTIFICATION&amp;quot;))
+eEnd   &amp;lt;- cStart - 1
+
+section &amp;lt;- NULL
+section[1:8]              &amp;lt;- &amp;quot;heading&amp;quot;
+section[pStart:pEnd]      &amp;lt;- &amp;quot;preamble&amp;quot;
+section[oStart:oEnd]      &amp;lt;- &amp;quot;operative&amp;quot;
+section[eStart:eEnd]      &amp;lt;- &amp;quot;endorsement&amp;quot;
+section[cStart:length(y)] &amp;lt;- &amp;quot;certification&amp;quot;
+
+## Re-structure text data.frame
 y &amp;lt;- data.frame(linenumber = 1:length(y),
                 text = y,
                 source = &amp;quot;IATF&amp;quot;,
                 type = &amp;quot;resolution&amp;quot;,
                 id = 29,
+                section = section,
                 date = as.Date(&amp;quot;27/04/2020&amp;quot;, format = &amp;quot;%d/%m/%y&amp;quot;),
                 stringsAsFactors = FALSE)
 
+## Convert data.frame to tibble
 iatfResolution29 &amp;lt;- tibble::tibble(y)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This results in the following text data:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 97 x 6
-##    linenumber text                               source type       id date      
-##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;                              &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;date&amp;gt;    
-##  1          1 WHEREAS, on March 16, 2020, to pr… IATF   resolu…    29 2020-04-27
-##  2          2 country, the President placed the… IATF   resolu…    29 2020-04-27
-##  3          3 April 14, 2020;                    IATF   resolu…    29 2020-04-27
-##  4          4 WHEREAS, on March 30, 2020, to de… IATF   resolu…    29 2020-04-27
-##  5          5 whether the Enhanced Community Qu… IATF   resolu…    29 2020-04-27
-##  6          6 extended, or expanded to other ar… IATF   resolu…    29 2020-04-27
-##  7          7 sub-Technical Working Group taske… IATF   resolu…    29 2020-04-27
-##  8          8 the Philippine COVID-19 situation; IATF   resolu…    29 2020-04-27
-##  9          9 WHEREAS, on April 3, 2020, the [A… IATF   resolu…    29 2020-04-27
-## 10         10 lifting or extension of the Enhan… IATF   resolu…    29 2020-04-27
-## # … with 87 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 105 x 7
+##    linenumber text                        source type      id section date      
+##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;                       &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;date&amp;gt;    
+##  1          1 Republic of the Philippines IATF   resol…    29 heading 2020-04-27
+##  2          2 Inter-Agency Task Force     IATF   resol…    29 heading 2020-04-27
+##  3          3 for the Management of Emer… IATF   resol…    29 heading 2020-04-27
+##  4          4 Resolution No. 29           IATF   resol…    29 heading 2020-04-27
+##  5          5 Series of 2020              IATF   resol…    29 heading 2020-04-27
+##  6          6 27 April 2020               IATF   resol…    29 heading 2020-04-27
+##  7          7 Recommendations relative t… IATF   resol…    29 heading 2020-04-27
+##  8          8 of the coronavirus disease… IATF   resol…    29 heading 2020-04-27
+##  9          9 WHEREAS, on March 16, 2020… IATF   resol…    29 preamb… 2020-04-27
+## 10         10 country, the President pla… IATF   resol…    29 preamb… 2020-04-27
+## # … with 95 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;step-5-save-the-data&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Step 5: Save the data&lt;/h2&gt;
-&lt;p&gt;Once data have been read, processed and structured, they are saved in &lt;code&gt;.Rda&lt;/code&gt; format for further use in text analysis topic modelling. To allow for replicability of the whole data extraction, processing and structuring process and to facilitate ease of distribution of the text data outputs, we packaged the functions we’ve developed and the datasets we produced into a standard, portable &lt;a href=&#34;https://www.r-project.org&#34;&gt;R&lt;/a&gt; package named &lt;code&gt;covidphtext&lt;/code&gt;. We then made the package available via GitHub from which those requiring the functions we developed and the text datasets we’ve produced can install the package. A detailed description of the package including installation and use can be found &lt;a href=&#34;https://como-ph.github.io/covidphtext&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once data have been read, processed and structured, they are saved in &lt;code&gt;.rda&lt;/code&gt; format for further use in text analysis or topic modelling with &lt;a href=&#34;https://www.r-project.org&#34;&gt;R language for statistical computing&lt;/a&gt;. To allow for replicability of the whole data extraction, processing and structuring process and to facilitate ease of distribution of the text data outputs, we packaged the functions we’ve developed and the datasets we produced into a standard, portable &lt;a href=&#34;https://www.r-project.org&#34;&gt;R&lt;/a&gt; package named &lt;code&gt;covidphtext&lt;/code&gt;. We then made the package available via &lt;a href=&#34;https://github.io/como-ph/covidphtext&#34;&gt;GitHub&lt;/a&gt; from which those requiring the functions we developed and the text datasets we’ve produced can install the package. A detailed description of the package including installation and use can be found &lt;a href=&#34;https://como-ph.github.io/covidphtext&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
