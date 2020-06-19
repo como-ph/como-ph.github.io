@@ -13,17 +13,165 @@
     </image>
     
     <item>
-      <title>Sentiment analysis</title>
-      <link>/post/sentiment-analysis/</link>
+      <title>Applying sentiment analysis on IATF resolutions</title>
+      <link>/post/applying-sentiment-analysis/</link>
       <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
-      <guid>/post/sentiment-analysis/</guid>
+      <guid>/post/applying-sentiment-analysis/</guid>
       <description>
+&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/viz/viz.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/grViz-binding/grViz.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment1&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment1-1.png&#34; alt=&#34;Sentiment analysis of IATF resolutions&#34; width=&#34;1440&#34; /&gt;
+&lt;p&gt;&lt;strong&gt;Sentiment analysis&lt;/strong&gt; or &lt;strong&gt;opinion mining&lt;/strong&gt; as it’s sometimes called is commonly used to assess affective states and subjective information such as opinion and attitudes of subjects of interest using language &lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;,&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;. The most common use case of sentiment analysis is on analysing product or service reviews that are made available on the internet but it is increasingly being used in research that aims to quantify public sentiment or opinion. In the advent of Web 2.0 and wide use of various social media platforms alongside much affordable access to increased computing power for most people, the use of sentiment analysis has increased and expanded to various fields such as stock and financial markets, elections, extreme events and disaster, medicine, and policy analysis &lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Using the text data on IATF resolutions available from the &lt;a href=&#34;https://como-ph.github.io/covidphtext&#34;&gt;covidphtext&lt;/a&gt; package we developed, we explore the use of &lt;strong&gt;sentiment analysis&lt;/strong&gt; as one of several &lt;em&gt;natural language processing (NLP)&lt;/em&gt;, &lt;em&gt;text analysis&lt;/em&gt; and &lt;em&gt;computational linguistics&lt;/em&gt; techniques we plan to use for assessing Philippine government policy with regard to the response to the COVID-19 pandemic. The following workflow illustrates the process we use:&lt;/p&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:workflow&#34;&gt;&lt;/span&gt;
+&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:576px;height:768px;&#34; class=&#34;grViz html-widget&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;diagram&#34;:&#34;\n  digraph sentimentAnalysis {\n\n    # a \&#34;graph\&#34; statement\n    graph [overlap = false, fontsize = 14, fontname = Helvetica]\n\n    # Terminal nodes\n    node [shape = oval, width = 1.5, penwidth = 1.5]\n        \n    a [label = \&#34;Start\&#34;];\n    g [label = \&#34;End\&#34;];\n\n    # Input/output nodes\n    node [shape = parallelogram, height = 1, width = 1.5, penwidth = 1.5]\n    \n    b [label = \&#34;1. covidphtext\ntext data\&#34;];\n    f [label = \&#34;5. Visualise\&#34;];\n\n    # Process nodes\n    node [shape = rect, fixedsize = true, height = 1, width = 1.5, penwidth = 1.5]\n  \n    c [label = \&#34;2. Tokenise\ndata\&#34;];\n    d [label = \&#34;3. Apply\nsentiment\nlexicon\&#34;];\n    e [label = \&#34;4. Summarise\&#34;];\n\n    edge [minlen = 2, arrowsize = 1.5, penwidth = 1.5]\n    \n    a -&gt; b\n    b -&gt; c\n    c -&gt; d\n    c -&gt; e\n    d -&gt; e\n    e -&gt; f\n    f -&gt; g\n\n    subgraph {\n      rank = same; c; d;\n    }\n  }&#34;,&#34;config&#34;:{&#34;engine&#34;:&#34;dot&#34;,&#34;options&#34;:null}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}&lt;/script&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 1: Sentiment analysis of IATF resolutions
+Figure 1: Sentiment analysis workflow
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1-text-data-covidphtext&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 1: Text data: covidphtext&lt;/h2&gt;
+&lt;p&gt;As described in an earlier &lt;a href=&#34;https://como-ph.github.io/post/covidphtext/&#34;&gt;post&lt;/a&gt;, the &lt;strong&gt;covidphtext&lt;/strong&gt; contains IATF resolutions text data structured for the purpose of text analysis. What we need to do now is to combine all resolutions into a single dataset. There is a convenience function in &lt;strong&gt;covidphtext&lt;/strong&gt; that helps with this called &lt;code&gt;combine_iatf&lt;/code&gt; and is used as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;allText &amp;lt;- covidphtext::combine_iatf(res = c(1:15, 17:46))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You will notice that we left out &lt;strong&gt;IATF Resolution No. 16.&lt;/strong&gt;. This resolution is the only resolution that has been written in Filipino (see below).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 87 x 7
+##    linenumber text                       source type       id section date      
+##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;                      &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;date&amp;gt;    
+##  1          1 Inter-Agency Task Force f… IATF   resolu…    16 heading 2020-03-30
+##  2          2 Additional Guidelines for… IATF   resolu…    16 heading 2020-03-30
+##  3          3 March 30, 2020             IATF   resolu…    16 heading 2020-03-30
+##  4          4 Resolution No. 16          IATF   resolu…    16 heading 2020-03-30
+##  5          5 A. Ayon sa direktiba ng D… IATF   resolu…    16 operat… 2020-03-30
+##  6          6 Autonomous Region in Musl… IATF   resolu…    16 operat… 2020-03-30
+##  7          7 mga pasilidad na maaring … IATF   resolu…    16 operat… 2020-03-30
+##  8          8 Inaatasan and DOT at iban… IATF   resolu…    16 operat… 2020-03-30
+##  9          9 pagtukoy ng mga pasilidad… IATF   resolu…    16 operat… 2020-03-30
+## 10         10 Ang mga natukoy na pasili… IATF   resolu…    16 operat… 2020-03-30
+## # … with 77 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Whilst it is possible to perform multi-lingual sentiment analysis, there is still no reliable &lt;strong&gt;sentiment lexicon&lt;/strong&gt; (see following section for definition) for Filipino. Leaving out &lt;strong&gt;IATF Resolution No. 16&lt;/strong&gt;, we arrive at the following concatenated IATF resolutions&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5,774 x 7
+##    linenumber text                       source type       id section date      
+##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;                      &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;date&amp;gt;    
+##  1          1 Republic of the Philippin… IATF   resolu…     1 heading 2020-01-28
+##  2          2 Department of Health       IATF   resolu…     1 heading 2020-01-28
+##  3          3 Office of the Secretary    IATF   resolu…     1 heading 2020-01-28
+##  4          4 Inter-Agency Task Force f… IATF   resolu…     1 heading 2020-01-28
+##  5          5 Emerging Infectious Disea… IATF   resolu…     1 heading 2020-01-28
+##  6          6 28 January 2020            IATF   resolu…     1 heading 2020-01-28
+##  7          7 Resolution No. 01          IATF   resolu…     1 heading 2020-01-28
+##  8          8 Series of 2020             IATF   resolu…     1 heading 2020-01-28
+##  9          9 Recommendations for the M… IATF   resolu…     1 heading 2020-01-28
+## 10         10 Novel Coronavirus Situati… IATF   resolu…     1 &amp;lt;NA&amp;gt;    2020-01-28
+## # … with 5,764 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;with 7 columns and 5774 rows of text. We then consider whether all the sections of a resolution is going to be useful for sentiment analysis. A typical resolution is composed of 3 sections:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Heading&lt;/strong&gt; - contains the &lt;em&gt;body proposing the resolution&lt;/em&gt;, the &lt;em&gt;subject of the resolution&lt;/em&gt;, the &lt;em&gt;resolution number&lt;/em&gt; and the &lt;em&gt;date resolution is issued&lt;/em&gt;;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Preambulatory clauses&lt;/strong&gt; - contains the &lt;em&gt;preamble statements of the resolution&lt;/em&gt; i.e., the reasons for which the proposing body is addressing the issue and highlights past action done by the body or any other organisation regarding the issue. This is usually composed of a series of phrases that starts with the &lt;strong&gt;WHEREAS&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Operative clauses&lt;/strong&gt; - contains phrases/statements that offer solutions to the issues stated in the preamble.These phrases are action-oriented starting with a verb followed by the proposed solution. This section usually starts off with &lt;strong&gt;LET IT BE RESOLVED&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The IATF Resolutions very much follow the aforementioned structure with the addition of a section stating the &lt;strong&gt;approval of the resolution and the signatories&lt;/strong&gt; approving the resolution, and in later resolutions a section &lt;strong&gt;certifying&lt;/strong&gt; that the resolution has been approved.&lt;/p&gt;
+&lt;p&gt;For purposes of sentiment analysis, the most meaningful sections to use will be the sections on preambulatory clauses and operative clauses. So, we further subset the concatenated text dataset of IATF Resolutions to only contain those that are preambulatory and operative clauses. You will notice that in the text data of each of the IATF Resolutions, these sections have been identified through the variable named &lt;code&gt;section&lt;/code&gt;. We use this variable to filter the sections we need as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;allText &amp;lt;- allText %&amp;gt;%
+  filter(section %in% c(&amp;quot;preamble&amp;quot;, &amp;quot;operative&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;which results in&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4,048 x 7
+##    linenumber text                        source type      id section date      
+##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;                       &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;date&amp;gt;    
+##  1         11 WHEREAS, Executive Order N… IATF   resol…     1 preamb… 2020-01-28
+##  2         12 for the Management of Emer… IATF   resol…     1 preamb… 2020-01-28
+##  3         13 WHEREAS, the Inter-agency … IATF   resol…     1 preamb… 2020-01-28
+##  4         14 identify, screen, and assi… IATF   resol…     1 preamb… 2020-01-28
+##  5         15 prevent and/or minimize th… IATF   resol…     1 preamb… 2020-01-28
+##  6         16 as prevent and/or minimize… IATF   resol…     1 preamb… 2020-01-28
+##  7         17 WHEREAS, on January 7, 202… IATF   resol…     1 preamb… 2020-01-28
+##  8         18 the viral pneumonia outbre… IATF   resol…     1 preamb… 2020-01-28
+##  9         19 (2019-nCoV) that has not b… IATF   resol…     1 preamb… 2020-01-28
+## 10         20 WHEREAS, as of January 27,… IATF   resol…     1 preamb… 2020-01-28
+## # … with 4,038 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are now left with &lt;code&gt;4048&lt;/code&gt; rows of text for sentiment analysis.&lt;/p&gt;
+&lt;p&gt;Finally, we perform some final data cleaning and processing that will be useful when performing sentiment analysis. We convert the word &lt;strong&gt;COVID-19&lt;/strong&gt; to &lt;strong&gt;COVID19&lt;/strong&gt; without the dash. Since this word will most likely be a critical word in this analysis, we wanted to ensure that we capture it in its entirety. The next step on &lt;strong&gt;tokenisation&lt;/strong&gt; removes any punctuation used in the text including dashes and will treat &lt;strong&gt;COVID&lt;/strong&gt; as a separate word from &lt;strong&gt;19&lt;/strong&gt;. We remove the dash prior to tokenisation so that we can keep these two as one word.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;allText$text &amp;lt;- str_replace_all(string = allText$text, 
+                                pattern = &amp;quot;COVID-19&amp;quot;, 
+                                replacement = &amp;quot;COVID19&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And then, anticipating that we will need some kind of grouping variable later in the analysis, we create a &lt;code&gt;month&lt;/code&gt; variable within the concatenated text dataset that indicates the month when a specific resolution was issued. This was done as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;allText &amp;lt;- allText %&amp;gt;%
+  mutate(month = factor(x = months(date),
+                        levels = c(&amp;quot;January&amp;quot;, &amp;quot;February&amp;quot;, &amp;quot;March&amp;quot;, 
+                                   &amp;quot;April&amp;quot;, &amp;quot;May&amp;quot;, &amp;quot;June&amp;quot;)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our final working text dataset is this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4,048 x 8
+##    linenumber text                  source type      id section date       month
+##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;                 &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;date&amp;gt;     &amp;lt;fct&amp;gt;
+##  1         11 WHEREAS, Executive O… IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  2         12 for the Management o… IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  3         13 WHEREAS, the Inter-a… IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  4         14 identify, screen, an… IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  5         15 prevent and/or minim… IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  6         16 as prevent and/or mi… IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  7         17 WHEREAS, on January … IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  8         18 the viral pneumonia … IATF   resol…     1 preamb… 2020-01-28 Janu…
+##  9         19 (2019-nCoV) that has… IATF   resol…     1 preamb… 2020-01-28 Janu…
+## 10         20 WHEREAS, as of Janua… IATF   resol…     1 preamb… 2020-01-28 Janu…
+## # … with 4,038 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-2-tokenise-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 2: Tokenise data&lt;/h2&gt;
+&lt;p&gt;We are now ready to &lt;strong&gt;tokenise&lt;/strong&gt; the data. &lt;strong&gt;Tokenisation&lt;/strong&gt; of text data simply means structuring the text data into &lt;strong&gt;tokens&lt;/strong&gt; – meaningful units of text such as a word, or groups of words, or a sentence, or a paragraph. For sentiment analysis, the most useful token will be a word mainly because the &lt;strong&gt;sentiment lexicons&lt;/strong&gt; (see following section for definition) we plan to use are based on words.&lt;/p&gt;
+&lt;p&gt;We use the &lt;a href=&#34;https://juliasilge.github.io/tidytext/&#34;&gt;tidytext&lt;/a&gt; package and the function &lt;code&gt;unnest_tokens&lt;/code&gt; within it to perform &lt;strong&gt;tokenisation&lt;/strong&gt; using words as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_resolutions &amp;lt;- allText %&amp;gt;%
+  unnest_tokens(output = word, input = text)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This results in the following dataset:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 40,024 x 8
+##    linenumber source type          id section  date       month   word     
+##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;date&amp;gt;     &amp;lt;fct&amp;gt;   &amp;lt;chr&amp;gt;    
+##  1         11 IATF   resolution     1 preamble 2020-01-28 January whereas  
+##  2         11 IATF   resolution     1 preamble 2020-01-28 January executive
+##  3         11 IATF   resolution     1 preamble 2020-01-28 January order    
+##  4         11 IATF   resolution     1 preamble 2020-01-28 January no       
+##  5         11 IATF   resolution     1 preamble 2020-01-28 January 168      
+##  6         11 IATF   resolution     1 preamble 2020-01-28 January s        
+##  7         11 IATF   resolution     1 preamble 2020-01-28 January 2014     
+##  8         11 IATF   resolution     1 preamble 2020-01-28 January creates  
+##  9         11 IATF   resolution     1 preamble 2020-01-28 January the      
+## 10         11 IATF   resolution     1 preamble 2020-01-28 January inter    
+## # … with 40,014 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You will notice that our new tokenised dataset is structured such that each word in the concatenated IATF Resolutions of preambles and operative clauses is a unit of data i.e. in a row. We now have a dataset with &lt;code&gt;40024&lt;/code&gt; rows and &lt;code&gt;8&lt;/code&gt; columns that we can use for the next step.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-3-apply-sentiment-lexicon&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 3: Apply sentiment lexicon&lt;/h2&gt;
+&lt;p&gt;We now apply a &lt;strong&gt;sentiment lexicon&lt;/strong&gt; onto the tokenised dataset from the previous step. &lt;strong&gt;Sentiment lexicons&lt;/strong&gt; are basically a list of common words in a specific language with each word having a value pertaining to the sentiment or emotion associated with a specific word. The value assigned to a word can be binary i.e. negative or positive, or can be categories of sentiments or emotions such as positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust, or a numerical value on a scale that runs from negative values indicating progressively negative sentiments to positive values indicating progressively positive sentiments.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://juliasilge.github.io/tidytext/&#34;&gt;tidytext&lt;/a&gt; package comes with three general use lexicons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;AFINN&lt;/code&gt; - from Finn Årup Nielsen which is a lexicon that assigns a score to words from -5 to +5 with negative scores indicating negative sentiments and positive scores indicating positive sentiments;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;bing&lt;/code&gt; - from Bing Liu and collaborators which is a lexicon that simply classifies words into either negative or positive categories; and,&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;nrc&lt;/code&gt; - from Saif Mohammad and Peter Turney which is a lexicon that groups words into categories of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, or trust&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We apply the sentiment lexicon from Bing and colleagues to our tokenised data as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resolution_sentiment &amp;lt;- tidy_resolutions %&amp;gt;%
+  inner_join(get_sentiments(&amp;quot;bing&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What we are basically doing here is to match the words in our tokenised data with the words in the sentiment lexicion from Bing and colleagues to get the sentiment value of positive or negative for our tokenised data. This results in the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,303 x 9
+##    linenumber source type       id section  date       month  word     sentiment
+##         &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;date&amp;gt;     &amp;lt;fct&amp;gt;  &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;    
+##  1         14 IATF   resolu…     1 preamble 2020-01-28 Janua… infected negative 
+##  2         15 IATF   resolu…     1 preamble 2020-01-28 Janua… well     positive 
+##  3         18 IATF   resolu…     1 preamble 2020-01-28 Janua… outbreak negative 
+##  4         21 IATF   resolu…     1 preamble 2020-01-28 Janua… risk     negative 
+##  5         21 IATF   resolu…     1 preamble 2020-01-28 Janua… infecti… negative 
+##  6         25 IATF   resolu…     1 operati… 2020-01-28 Janua… recomme… positive 
+##  7         26 IATF   resolu…     1 operati… 2020-01-28 Janua… support  positive 
+##  8         26 IATF   resolu…     1 operati… 2020-01-28 Janua… accurate positive 
+##  9         27 IATF   resolu…     1 operati… 2020-01-28 Janua… timely   positive 
+## 10         27 IATF   resolu…     1 operati… 2020-01-28 Janua… support  positive 
+## # … with 1,293 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment1&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment1-1.png&#34; alt=&#34;Sentiment analysis of IATF resolutions&#34; width=&#34;1152&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Sentiment analysis of IATF resolutions
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;The resolutions over time generally starts off on a positive note (except for resolution 14 on 20 March 2020 and resolution 15 on 25 March 2020).&lt;/p&gt;
@@ -32,43 +180,52 @@ Figure 1: Sentiment analysis of IATF resolutions
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2a&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment2a-1.png&#34; alt=&#34;Words that contribute to positive and negative sentiment in the IATF resolutions&#34; width=&#34;768&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 2: Words that contribute to positive and negative sentiment in the IATF resolutions
+Figure 3: Words that contribute to positive and negative sentiment in the IATF resolutions
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2b&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment2b-1.png&#34; alt=&#34;Average sentiment value for IATF resolutions by month&#34; width=&#34;768&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 3: Average sentiment value for IATF resolutions by month
+Figure 4: Average sentiment value for IATF resolutions by month
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2c&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment2c-1.png&#34; alt=&#34;Sentiment value across all resolutions by month&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 4: Sentiment value across all resolutions by month
+Figure 5: Sentiment value across all resolutions by month
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment3&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment3-1.png&#34; alt=&#34;The most common words in the IATF resolutions&#34; width=&#34;100%&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 5: The most common words in the IATF resolutions
+Figure 6: The most common words in the IATF resolutions
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment4&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/sentiment-analysis/index_files/figure-html/sentiment4-1.png&#34; alt=&#34;Most common positive and negative word in the IATF resolutions&#34; width=&#34;100%&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 6: Most common positive and negative word in the IATF resolutions
+Figure 7: Most common positive and negative word in the IATF resolutions
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Mäntylä MV, Graziotin D, Kuutila M. The evolution of sentiment analysis—A review of research topics, venues, and top cited papers. Computer Science Review. 2018;27: 16–32. &lt;a href=&#34;doi:10.1016/j.cosrev.2017.10.002&#34; class=&#34;uri&#34;&gt;doi:10.1016/j.cosrev.2017.10.002&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Liu B. Handbook Chapter: Sentiment Analysis and Subjectivity. Handbook of Natural Language Processing, Handbook of Natural Language Processing, Marcel Dekker, Inc. New York, NY, USA (2009)&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Mäntylä MV, Graziotin D, Kuutila M. The evolution of sentiment analysis—A review of research topics, venues, and top cited papers. Computer Science Review. 2018;27: 16–32. &lt;a href=&#34;doi:10.1016/j.cosrev.2017.10.002&#34; class=&#34;uri&#34;&gt;doi:10.1016/j.cosrev.2017.10.002&lt;/a&gt;&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title>Creating text data from IATF resolutions for use in text analysis</title>
-      <link>/post/covidphtext/</link>
+      <link>/post/creating-text-data-from-iatf-resolutions/</link>
       <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
-      <guid>/post/covidphtext/</guid>
+      <guid>/post/creating-text-data-from-iatf-resolutions/</guid>
       <description>
 &lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
 &lt;script src=&#34;/rmarkdown-libs/d3/d3.min.js&#34;&gt;&lt;/script&gt;
@@ -287,9 +444,9 @@ iatfResolution29 &amp;lt;- tibble::tibble(y)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model</title>
-      <link>/post/covid19-modeling-tools/</link>
+      <link>/post/specifying-covid19-model-parameters/</link>
       <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
-      <guid>/post/covid19-modeling-tools/</guid>
+      <guid>/post/specifying-covid19-model-parameters/</guid>
       <description></description>
     </item>
     

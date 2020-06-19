@@ -27,9 +27,9 @@
     
     <item>
       <title>Creating text data from IATF resolutions for use in text analysis</title>
-      <link>/post/covidphtext/</link>
+      <link>/post/creating-text-data-from-iatf-resolutions/</link>
       <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
-      <guid>/post/covidphtext/</guid>
+      <guid>/post/creating-text-data-from-iatf-resolutions/</guid>
       <description>
 &lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
 &lt;script src=&#34;/rmarkdown-libs/d3/d3.min.js&#34;&gt;&lt;/script&gt;
