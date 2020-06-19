@@ -604,7 +604,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    12 min read
+    15 min read
   </span>
   
 
@@ -678,9 +678,9 @@
 </div>
 
 
-<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 1200px; max-height: 831px;">
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 1200px; max-height: 857px;">
   <div style="position: relative">
-    <img src="/post/applying-sentiment-analysis/featured_hu773b29531086a7055cacaaf3fe15cb95_336341_1200x0_resize_lanczos_2.png" alt="" class="featured-image">
+    <img src="/post/applying-sentiment-analysis/featured_hu1f7ac5207961a1635696ac2ea6705847_244028_1200x0_resize_lanczos_2.png" alt="" class="featured-image">
     <span class="article-header-caption">Image credit: CoMo Philippines</span>
   </div>
 </div>
@@ -697,7 +697,7 @@
 <script src="/rmarkdown-libs/grViz-binding/grViz.js"></script>
 
 
-<p><strong>Sentiment analysis</strong> or <strong>opinion mining</strong> as it’s sometimes called is commonly used to assess affective states and subjective information such as opinion and attitudes of subjects of interest using language <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. The most common use case of sentiment analysis is on analysing product or service reviews that are made available on the internet but it is increasingly being used in research that aims to quantify public sentiment or opinion. In the advent of Web 2.0 and wide use of various social media platforms alongside much affordable access to increased computing power for most people, the use of sentiment analysis has increased and expanded to various fields such as stock and financial markets, elections, extreme events and disaster, medicine, and policy analysis <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p><strong>Sentiment analysis</strong> or <strong>opinion mining</strong> as it’s sometimes called is commonly used to assess affective states and subjective information such as opinion and attitudes of subjects of interest using language <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. The most common use case of sentiment analysis is on analysing product or service reviews that are made available on the internet but it is increasingly being used in research that aims to quantify public sentiment or opinion. In the advent of Web 2.0 and wide use of various social media platforms alongside much affordable access to increased computing power for most people, the use of sentiment analysis has increased and expanded to various fields such as stock and financial markets, elections, extreme events and disaster, medicine, and policy analysis<sup>1</sup>.</p>
 <p>Using the text data on IATF resolutions available from the <a href="https://como-ph.github.io/covidphtext">covidphtext</a> package we developed, we explore the use of <strong>sentiment analysis</strong> as one of several <em>natural language processing (NLP)</em>, <em>text analysis</em> and <em>computational linguistics</em> techniques we plan to use for assessing Philippine government policy with regard to the response to the COVID-19 pandemic. The following workflow illustrates the process we use:</p>
 <div class="figure" style="text-align: center"><span id="fig:workflow"></span>
 <div id="htmlwidget-1" style="width:576px;height:768px;" class="grViz html-widget"></div>
@@ -706,6 +706,7 @@
 Figure 1: Sentiment analysis workflow
 </p>
 </div>
+<p><br></p>
 <div id="step-1-text-data-covidphtext" class="section level2">
 <h2>Step 1: Text data: covidphtext</h2>
 <p>As described in an earlier <a href="https://como-ph.github.io/post/covidphtext/">post</a>, the <strong>covidphtext</strong> contains IATF resolutions text data structured for the purpose of text analysis. What we need to do now is to combine all resolutions into a single dataset. There is a convenience function in <strong>covidphtext</strong> that helps with this called <code>combine_iatf</code> and is used as follows:</p>
@@ -790,6 +791,7 @@ Figure 1: Sentiment analysis workflow
 ##  9         19 (2019-nCoV) that has… IATF   resol…     1 preamb… 2020-01-28 Janu…
 ## 10         20 WHEREAS, as of Janua… IATF   resol…     1 preamb… 2020-01-28 Janu…
 ## # … with 4,038 more rows</code></pre>
+<p><br></p>
 </div>
 <div id="step-2-tokenise-data" class="section level2">
 <h2>Step 2: Tokenise data</h2>
@@ -813,6 +815,7 @@ Figure 1: Sentiment analysis workflow
 ## 10         11 IATF   resolution     1 preamble 2020-01-28 January inter    
 ## # … with 40,014 more rows</code></pre>
 <p>You will notice that our new tokenised dataset is structured such that each word in the concatenated IATF Resolutions of preambles and operative clauses is a unit of data i.e. in a row. We now have a dataset with <code>40024</code> rows and <code>8</code> columns that we can use for the next step.</p>
+<p><br></p>
 </div>
 <div id="step-3-apply-sentiment-lexicon" class="section level2">
 <h2>Step 3: Apply sentiment lexicon</h2>
@@ -823,10 +826,13 @@ Figure 1: Sentiment analysis workflow
 <li><p><code>bing</code> - from Bing Liu and collaborators which is a lexicon that simply classifies words into either negative or positive categories; and,</p></li>
 <li><p><code>nrc</code> - from Saif Mohammad and Peter Turney which is a lexicon that groups words into categories of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, or trust</p></li>
 </ul>
-<p>We apply the sentiment lexicon from Bing and colleagues to our tokenised data as follows:</p>
-<pre class="r"><code>resolution_sentiment &lt;- tidy_resolutions %&gt;%
+<p>Below we describe how to apply these sentiment lexicons to the tokenised data. The techniques described below in applying sentiment onto a text dataset are not the only ways to approach sentiment analysis but they are the most basic and common approaches used. These approaches treat the text dataset as a <em>“bag of words”</em> such that the sentiment content of the whole dataset is the sum of the sentiment content of each of the words in the dataset.</p>
+<div id="labeling-words-in-the-dataset-as-having-positive-or-negative-sentiment" class="section level3">
+<h3>Labeling words in the dataset as having positive or negative sentiment</h3>
+<p>We apply the sentiment lexicon from <em>Bing and colleagues</em> to our tokenised data as follows:</p>
+<pre class="r"><code>resolution_sentiment_bing &lt;- tidy_resolutions %&gt;%
   inner_join(get_sentiments(&quot;bing&quot;))</code></pre>
-<p>What we are basically doing here is to match the words in our tokenised data with the words in the sentiment lexicion from Bing and colleagues to get the sentiment value of positive or negative for our tokenised data. This results in the following:</p>
+<p>What we are basically doing here is to match the words in our tokenised data with the words in the sentiment lexicon from <em>Bing and colleagues</em> to get the sentiment value of positive or negative for our tokenised data. This results in the following sentiment-orientated IATF word token dataset:</p>
 <pre><code>## # A tibble: 1,303 x 9
 ##    linenumber source type       id section  date       month  word     sentiment
 ##         &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;date&gt;     &lt;fct&gt;  &lt;chr&gt;    &lt;chr&gt;    
@@ -841,43 +847,138 @@ Figure 1: Sentiment analysis workflow
 ##  9         27 IATF   resolu…     1 operati… 2020-01-28 Janua… timely   positive 
 ## 10         27 IATF   resolu…     1 operati… 2020-01-28 Janua… support  positive 
 ## # … with 1,293 more rows</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:sentiment1"></span>
-<img src="/post/sentiment-analysis/index_files/figure-html/sentiment1-1.png" alt="Sentiment analysis of IATF resolutions" width="1152" />
+</div>
+<div id="labeling-words-in-the-dataset-as-having-a-specific-type-of-sentiment-or-emotion" class="section level3">
+<h3>Labeling words in the dataset as having a specific type of sentiment or emotion</h3>
+<p>Using the <code>nrc</code> lexicon, we use the same approach as the previous:</p>
+<pre class="r"><code>resolution_sentiment_nrc &lt;- tidy_resolutions %&gt;%
+  inner_join(get_sentiments(&quot;nrc&quot;))</code></pre>
+<p>which results in a tokenised dataset of words with associated sentiments or emotions alongside them as shown below:</p>
+<pre><code>## # A tibble: 8,028 x 9
+##    linenumber source type        id section  date       month  word    sentiment
+##         &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;date&gt;     &lt;fct&gt;  &lt;chr&gt;   &lt;chr&gt;    
+##  1         11 IATF   resolut…     1 preamble 2020-01-28 Janua… inter   negative 
+##  2         11 IATF   resolut…     1 preamble 2020-01-28 Janua… inter   sadness  
+##  3         11 IATF   resolut…     1 preamble 2020-01-28 Janua… task    positive 
+##  4         11 IATF   resolut…     1 preamble 2020-01-28 Janua… force   anger    
+##  5         11 IATF   resolut…     1 preamble 2020-01-28 Janua… force   fear     
+##  6         11 IATF   resolut…     1 preamble 2020-01-28 Janua… force   negative 
+##  7         12 IATF   resolut…     1 preamble 2020-01-28 Janua… manage… positive 
+##  8         12 IATF   resolut…     1 preamble 2020-01-28 Janua… manage… trust    
+##  9         12 IATF   resolut…     1 preamble 2020-01-28 Janua… infect… disgust  
+## 10         12 IATF   resolut…     1 preamble 2020-01-28 Janua… infect… fear     
+## # … with 8,018 more rows</code></pre>
+</div>
+<div id="scoring-words-by-their-level-of-positive-or-negative-sentiment" class="section level3">
+<h3>Scoring words by their level of positive or negative sentiment</h3>
+<p>Using the <code>AFINN</code> lexicon, we use the same approach as the previous:</p>
+<pre class="r"><code>resolution_sentiment_afinn &lt;- tidy_resolutions %&gt;%
+  inner_join(get_sentiments(&quot;afinn&quot;))</code></pre>
+<p>which results in a tokenised dataset of words with associated sentiment scores ranging from -5 (highly negative) to +5 (highly positive).</p>
+<p><br></p>
+</div>
+</div>
+<div id="step-4-summarise-sentiment-orientated-word-token-dataset" class="section level2">
+<h2>Step 4: Summarise sentiment-orientated word token dataset</h2>
+<p>We can now make various summaries with the sentiment-orientated datasets from the previous step. This step will be influenced by what questions you want answered by the sentiment analysis.</p>
+<div id="how-does-the-sentiment-change-throughout-each-resolution" class="section level3">
+<h3>How does the sentiment change throughout each resolution</h3>
+<p>We can answer this question by counting how many positive and negative words there are in a specified block of text in the resolutions (referred to as the <em>index</em>). To decide what a meaningful block of text or <em>index</em> would be for a resolution, we need to remember that resolutions tend to be written in a very structured and concise way and that meaning can already be derived within short chunks of text. So, for this, we use an index of 5 lines. We perform this using the tokenised dataset <code>resolution_sentiment_bing</code>:</p>
+<pre class="r"><code>resolution_sentiment_bing %&gt;%
+  count(id, index = linenumber %/% 5, sentiment) %&gt;%
+  spread(sentiment, n, fill = 0) %&gt;%
+  mutate(sentiment = positive - negative)</code></pre>
+<pre><code>## # A tibble: 623 x 5
+##       id index negative positive sentiment
+##    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1     1     2        1        0        -1
+##  2     1     3        1        1         0
+##  3     1     4        2        0        -2
+##  4     1     5        0        6         6
+##  5     1     6        3        0        -3
+##  6     2     2        0        2         2
+##  7     2     3        1        2         1
+##  8     2     4        1        0        -1
+##  9     2     5        2        0        -2
+## 10     2     6        0        1         1
+## # … with 613 more rows</code></pre>
+</div>
+<div id="how-does-the-sentiment-change-by-month" class="section level3">
+<h3>How does the sentiment change by month</h3>
+<pre class="r"><code>resolution_sentiment_bing %&gt;%
+  count(month, index = linenumber %/% 5, sentiment) %&gt;%
+  spread(sentiment, n, fill = 0) %&gt;%
+  mutate(sentiment = positive - negative)</code></pre>
+<pre><code>## # A tibble: 207 x 5
+##    month   index negative positive sentiment
+##    &lt;fct&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1 January     2        1        2         1
+##  2 January     3        2        3         1
+##  3 January     4        3        0        -3
+##  4 January     5        2        6         4
+##  5 January     6        3        1        -2
+##  6 January     7        1        1         0
+##  7 January     8        1        1         0
+##  8 January     9        0        1         1
+##  9 January    10        0        1         1
+## 10 January    11        2        0        -2
+## # … with 197 more rows</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="step-5-visualise" class="section level2">
+<h2>Step 5: Visualise</h2>
+<pre class="r"><code>resolution_sentiment_bing %&gt;%
+  count(id, index = linenumber %/% 5, sentiment) %&gt;%
+  spread(sentiment, n, fill = 0) %&gt;%
+  mutate(sentiment = positive - negative) %&gt;%
+  ggplot(aes(index, sentiment, group = id)) +
+  geom_col(colour = &quot;#18BC9C&quot;, 
+           fill = &quot;#18BC9C&quot;, 
+           alpha = 0.7,
+           show.legend = FALSE) +
+  facet_wrap(~ id, ncol = 5, scales = &quot;free_x&quot;) +
+  theme_como</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:senPlot1a"></span>
+<img src="/post/applying-sentiment-analysis/index_files/figure-html/senPlot1a-1.png" alt="Sentiment change throughout each resolution" width="1200" />
 <p class="caption">
-Figure 2: Sentiment analysis of IATF resolutions
+Figure 2: Sentiment change throughout each resolution
 </p>
 </div>
-<p>The resolutions over time generally starts off on a positive note (except for resolution 14 on 20 March 2020 and resolution 15 on 25 March 2020).</p>
-<p>Early on in the pandemic, in the first two weeks of March 2020 (resolutions up to 17 March 2020), the resolutions generally starts off on a mildly positive note but almost immediately gets to a more negative sentiment as the resolution progresses to the end. This is particularly evident in the first two resolution in the first week of March. By the second week of March, some small spikes of positivity is noted towards the end of the resolutions but still with a more negative tone at the end.</p>
-<p>By the second week of March 2020 up to early April 2020, there is a shift to a mostly more positive sentiment to the resolutions right from the start. A few sharp troughs of negativity on the 25th of March and the 3rd of April 2020 can be noted.</p>
-<div class="figure" style="text-align: center"><span id="fig:sentiment2a"></span>
-<img src="/post/sentiment-analysis/index_files/figure-html/sentiment2a-1.png" alt="Words that contribute to positive and negative sentiment in the IATF resolutions" width="768" />
+<div class="figure" style="text-align: center"><span id="fig:senPlot1"></span>
+<img src="/post/applying-sentiment-analysis/index_files/figure-html/senPlot1-1.png" alt="Sentiment analysis of IATF resolutions" width="1152" />
 <p class="caption">
-Figure 3: Words that contribute to positive and negative sentiment in the IATF resolutions
+Figure 3: Sentiment analysis of IATF resolutions
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:sentiment2a"></span>
+<img src="/post/applying-sentiment-analysis/index_files/figure-html/sentiment2a-1.png" alt="Words that contribute to positive and negative sentiment in the IATF resolutions" width="768" />
+<p class="caption">
+Figure 4: Words that contribute to positive and negative sentiment in the IATF resolutions
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:sentiment2b"></span>
-<img src="/post/sentiment-analysis/index_files/figure-html/sentiment2b-1.png" alt="Average sentiment value for IATF resolutions by month" width="768" />
+<img src="/post/applying-sentiment-analysis/index_files/figure-html/sentiment2b-1.png" alt="Average sentiment value for IATF resolutions by month" width="768" />
 <p class="caption">
-Figure 4: Average sentiment value for IATF resolutions by month
+Figure 5: Average sentiment value for IATF resolutions by month
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:sentiment2c"></span>
-<img src="/post/sentiment-analysis/index_files/figure-html/sentiment2c-1.png" alt="Sentiment value across all resolutions by month" width="1152" />
+<img src="/post/applying-sentiment-analysis/index_files/figure-html/sentiment2c-1.png" alt="Sentiment value across all resolutions by month" width="1152" />
 <p class="caption">
-Figure 5: Sentiment value across all resolutions by month
+Figure 6: Sentiment value across all resolutions by month
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:sentiment3"></span>
-<img src="/post/sentiment-analysis/index_files/figure-html/sentiment3-1.png" alt="The most common words in the IATF resolutions" width="100%" />
+<img src="/post/applying-sentiment-analysis/index_files/figure-html/sentiment3-1.png" alt="The most common words in the IATF resolutions" width="100%" />
 <p class="caption">
-Figure 6: The most common words in the IATF resolutions
+Figure 7: The most common words in the IATF resolutions
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:sentiment4"></span>
-<img src="/post/sentiment-analysis/index_files/figure-html/sentiment4-1.png" alt="Most common positive and negative word in the IATF resolutions" width="100%" />
+<img src="/post/applying-sentiment-analysis/index_files/figure-html/sentiment4-1.png" alt="Most common positive and negative word in the IATF resolutions" width="100%" />
 <p class="caption">
-Figure 7: Most common positive and negative word in the IATF resolutions
+Figure 8: Most common positive and negative word in the IATF resolutions
 </p>
 </div>
 <p><br>
@@ -888,7 +989,6 @@ Figure 7: Most common positive and negative word in the IATF resolutions
 <ol>
 <li id="fn1"><p>Mäntylä MV, Graziotin D, Kuutila M. The evolution of sentiment analysis—A review of research topics, venues, and top cited papers. Computer Science Review. 2018;27: 16–32. <a href="doi:10.1016/j.cosrev.2017.10.002" class="uri">doi:10.1016/j.cosrev.2017.10.002</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Liu B. Handbook Chapter: Sentiment Analysis and Subjectivity. Handbook of Natural Language Processing, Handbook of Natural Language Processing, Marcel Dekker, Inc. New York, NY, USA (2009)<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Mäntylä MV, Graziotin D, Kuutila M. The evolution of sentiment analysis—A review of research topics, venues, and top cited papers. Computer Science Review. 2018;27: 16–32. <a href="doi:10.1016/j.cosrev.2017.10.002" class="uri">doi:10.1016/j.cosrev.2017.10.002</a><a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
