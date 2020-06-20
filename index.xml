@@ -392,18 +392,24 @@ Figure 7: Average sentiment value per resolution
 &lt;/div&gt;
 &lt;div id=&#34;question-6-what-is-the-average-sentiment-value-contribution-of-specific-words&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Question 6: What is the average sentiment value contribution of specific words&lt;/h3&gt;
+&lt;p&gt;To answer this question we use the &lt;code&gt;AFINN&lt;/code&gt; sentiment lexicon which assigns a numerical score for positive and negative sentiments ranging from -5 to +5 respectively. Once we have assigned sentiment scores to the words, we do a counting of the words and then calculate a sentiment value per word by multiplying the sentiment score for the word with the proportion of the frequency of the word with the total frequency of all the words.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ \text{Sentiment value} ~ = ~ \text{Sentiment score} ~ \times ~ \frac{\text{Word frequency}}{\sum{\text{World frequency}}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To get to this answer, we summarise and visualise the data as follows:&lt;/p&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment4a&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment4a-1.png&#34; alt=&#34;Sentiment value of words across all resolutions&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 8: Sentiment value of words across all resolutions
 &lt;/p&gt;
 &lt;/div&gt;
+&lt;p&gt;Of the top ten most frequent words from all the resolutions, 6 have positive sentiment value and 4 with negative sentiment value. All top ten words are indicative of the nature of the text dataset that we are analysing. The top words for positive sentiment have roughly similar sentiment value as the top words for negative sentiment.&lt;/p&gt;
+&lt;p&gt;We disaggregate the results for resolutions per month as below:&lt;/p&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment4b&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment4b-1.png&#34; alt=&#34;Sentiment value of words across all resolutions by month&#34; width=&#34;1344&#34; /&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment4b-1.png&#34; alt=&#34;Sentiment value of words across all resolutions by month&#34; width=&#34;1440&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 9: Sentiment value of words across all resolutions by month
 &lt;/p&gt;
 &lt;/div&gt;
+&lt;p&gt;Resolutions for April and May mirror the words and the sentiment value for the entire dataset.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
