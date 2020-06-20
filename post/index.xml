@@ -205,33 +205,49 @@ Figure 1: Sentiment analysis workflow
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id=&#34;step-4-summarise-sentiment-orientated-word-token-dataset&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Step 4: Summarise sentiment-orientated word token dataset&lt;/h2&gt;
-&lt;p&gt;We can now make various summaries with the sentiment-orientated datasets from the previous step. This step will be influenced by what questions you want answered by the sentiment analysis.&lt;/p&gt;
-&lt;div id=&#34;how-does-the-sentiment-change-throughout-each-resolution&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;How does the sentiment change throughout each resolution&lt;/h3&gt;
-&lt;p&gt;We can answer this question by counting how many positive and negative words there are in a specified block of text in the resolutions (referred to as the &lt;em&gt;index&lt;/em&gt;). To decide what a meaningful block of text or &lt;em&gt;index&lt;/em&gt; would be for a resolution, we need to remember that resolutions tend to be written in a very structured and concise way and that meaning can already be derived within short chunks of text. So, for this, we use an index of 5 lines. We perform this using the tokenised dataset &lt;code&gt;resolution_sentiment_bing&lt;/code&gt;:&lt;/p&gt;
+&lt;div id=&#34;step-4-and-5-summarise-sentiment-orientated-word-token-dataset-and-visualise-summaries&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 4 and 5: Summarise sentiment-orientated word token dataset and visualise summaries&lt;/h2&gt;
+&lt;p&gt;We can now make various summaries with the sentiment-orientated datasets from the previous step and then visualise the output. Summaries and visualisation go hand-in-hand and these steps will be influenced by what questions you want answered by the sentiment analysis. Here we ask some questions with regard to sentiments in the IATF resolutions and demonstrate how we can summarise and visualise the data to answer the questions.&lt;/p&gt;
+&lt;div id=&#34;question-1-how-does-the-sentiment-change-throughout-each-resolution-and-over-time&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 1: How does the sentiment change throughout each resolution and over time?&lt;/h3&gt;
+&lt;p&gt;To answer this question, we count how many positive and negative words there are in a specified block of text in the resolutions (referred to as the &lt;em&gt;index&lt;/em&gt;). To decide what a meaningful block of text or &lt;em&gt;index&lt;/em&gt; would be for a resolution, we need to remember that resolutions tend to be written in a very structured and concise way and that meaning can already be derived within short chunks of text. So, for this, we use an index of 5 lines at most.&lt;/p&gt;
+&lt;p&gt;We perform this using the tokenised dataset &lt;code&gt;resolution_sentiment_bing&lt;/code&gt; which has a binary sentiment value of positive or negative:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resolution_sentiment_bing %&amp;gt;%
-  count(id, index = linenumber %/% 5, sentiment) %&amp;gt;%
+  count(id, date, index = linenumber %/% 5, sentiment) %&amp;gt;%
   spread(sentiment, n, fill = 0) %&amp;gt;%
   mutate(sentiment = positive - negative)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 623 x 5
-##       id index negative positive sentiment
-##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
-##  1     1     2        1        0        -1
-##  2     1     3        1        1         0
-##  3     1     4        2        0        -2
-##  4     1     5        0        6         6
-##  5     1     6        3        0        -3
-##  6     2     2        0        2         2
-##  7     2     3        1        2         1
-##  8     2     4        1        0        -1
-##  9     2     5        2        0        -2
-## 10     2     6        0        1         1
-## # … with 613 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 631 x 6
+##       id date       index negative positive sentiment
+##    &amp;lt;dbl&amp;gt; &amp;lt;date&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1     1 2020-01-28     2        1        0        -1
+##  2     1 2020-01-28     3        1        1         0
+##  3     1 2020-01-28     4        2        0        -2
+##  4     1 2020-01-28     5        0        6         6
+##  5     1 2020-01-28     6        3        0        -3
+##  6     2 2020-01-31     2        0        2         2
+##  7     2 2020-01-31     3        1        2         1
+##  8     2 2020-01-31     4        1        0        -1
+##  9     2 2020-01-31     5        2        0        -2
+## 10     2 2020-01-31     6        0        1         1
+## # … with 621 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We then visualise this output using a bar chart for each resolution as shown below:&lt;/p&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:senPlot1a&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/senPlot1a-1.png&#34; alt=&#34;Sentiment change throughout each resolution&#34; width=&#34;1200&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Sentiment change throughout each resolution
+&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;how-does-the-sentiment-change-by-month&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;How does the sentiment change by month&lt;/h3&gt;
+&lt;p&gt;In interpreting our output to answer the question, we can treat each of the individual bar charts as describing what the pattern of sentiment is within a single resolution (as each resolution have been issued on a specific date) and we can think of the whole collection of bar charts by date as a time-series given that each resolution was issued chronologically from January up to current date. So, in the bar chart, moving from left to right starting from the first row of bar charts to the last, we are seeing the progression of sentiments in the IATF over time since January to current date.&lt;/p&gt;
+&lt;p&gt;General observations are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;No discernible and consistent intra-resolution pattern of sentiment. This is interesting given that we took both the preambulatory and operative clauses section only which by definition can each have a different tone and sentiment. A naive assumption can be that preambulatory clauses section can be more negative in that it states the issues that are being resolved by the resolution whilst the operative clauses section is meant to be action oriented hence more positive. But given that the whole topic is about a pandemic and its control, actions taken to address the issue can be negative such as quarantine, lockdown, limitation of movement, etc.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The resolutions start out as relatively shorter texts from January 2020 up to 9 March 2020 (first 2 rows of bar charts). By the 12th of March 2020, the amount of text increases to an almost consistent amount up to current date except during the period of the second week of April 2020;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Resolutions issued from January 2020 to 3 April 2020 tended to be more negative whilst resolutions after this date tended to be more positive.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-2-how-does-the-sentiment-change-by-month&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 2: How does the sentiment change by month?&lt;/h3&gt;
+&lt;p&gt;In the previous question and in the outputs we produced to provide answers to that question, no clear patterns showed based on a resolution-by-resolution summary and visualisation. In this question, the level of aggregation is by month which will mean at least 2-3 resolutions grouped together. We perform this summary as follows:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resolution_sentiment_bing %&amp;gt;%
   count(month, index = linenumber %/% 5, sentiment) %&amp;gt;%
   spread(sentiment, n, fill = 0) %&amp;gt;%
@@ -250,66 +266,83 @@ Figure 1: Sentiment analysis workflow
 ##  9 January    10        0        1         1
 ## 10 January    11        2        0        -2
 ## # … with 197 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;We then visualise this in a similar manner as above but with months as the grouping variable. We get the following output:&lt;/p&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:senPlot1b&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/senPlot1b-1.png&#34; alt=&#34;Sentiment change by month&#34; width=&#34;1152&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 3: Sentiment change by month
+&lt;/p&gt;
 &lt;/div&gt;
+&lt;p&gt;With this summary and visualisation, we confirm our earlier observation of resolutions being shorter texts in January and February 2020. Also, there is a more discernible intra-month pattern of sentiment particularly starting in March 2020 onwards. March 2020 starts off in a more negative which then picks up as more positive later on. April 2020 on the other hand is predominantly positive. May 2020 has the most amount of text (most number of resolutions). Earlier resolutions in May 2020 were highly positive which eventually tapers off to a mix of sentiments moving forward. By June 2020, the sentiments seem to be returning to something similar to the January to February 2020 pattern of relatively more positive sentiments.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;step-5-visualise&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Step 5: Visualise&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resolution_sentiment_bing %&amp;gt;%
-  count(id, index = linenumber %/% 5, sentiment) %&amp;gt;%
+&lt;div id=&#34;question-3-what-is-the-sentiment-change-across-all-resolutions&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 3: What is the sentiment change across all resolutions?&lt;/h3&gt;
+&lt;p&gt;We’ve summarised the sentiments by resolution by month. Now we’d like to see what the overall progression of sentiment is through the full body of text of preambles and operative clauses. We summarise and visualise the data as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resolution_sentiment_bing &amp;lt;- tidy_resolutions %&amp;gt;%
+  inner_join(get_sentiments(&amp;quot;bing&amp;quot;)) %&amp;gt;%
+  count(index = linenumber %/% 5, sentiment) %&amp;gt;%
   spread(sentiment, n, fill = 0) %&amp;gt;%
-  mutate(sentiment = positive - negative) %&amp;gt;%
-  ggplot(aes(index, sentiment, group = id)) +
+  mutate(sentiment = positive - negative)
+  
+ggplot(resolution_sentiment_bing, aes(index, sentiment)) +
   geom_col(colour = &amp;quot;#18BC9C&amp;quot;, 
            fill = &amp;quot;#18BC9C&amp;quot;, 
            alpha = 0.7,
            show.legend = FALSE) +
-  facet_wrap(~ id, ncol = 5, scales = &amp;quot;free_x&amp;quot;) +
   theme_como&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:senPlot1a&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/senPlot1a-1.png&#34; alt=&#34;Sentiment change throughout each resolution&#34; width=&#34;1200&#34; /&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:senPlot1c&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/senPlot1c-1.png&#34; alt=&#34;Sentiment change across all resolutions&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 2: Sentiment change throughout each resolution
+Figure 4: Sentiment change across all resolutions
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:senPlot1&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/senPlot1-1.png&#34; alt=&#34;Sentiment analysis of IATF resolutions&#34; width=&#34;1152&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 3: Sentiment analysis of IATF resolutions
-&lt;/p&gt;
+&lt;p&gt;Strongly positive sentiment early on in the text (earlier resolutions in the January to February 2020 period) which then tapers off in March 2020. From then onwards, its been a relatively even mix of positive and negative sentiments.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;question-4-which-words-contribute-the-most-to-positive-and-negative-sentiments&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 4: Which words contribute the most to positive and negative sentiments?&lt;/h3&gt;
+&lt;p&gt;Now what we know the trend of sentiments in the resolutions across time and overall, we’d like to know which words contribute the most to positive and negative sentiments. We summarise and visualise the data to answer this question as follows:&lt;/p&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2a&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment2a-1.png&#34; alt=&#34;Words that contribute to positive and negative sentiment in the IATF resolutions&#34; width=&#34;768&#34; /&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment2a-1.png&#34; alt=&#34;Top ten words that contribute to positive and negative sentiment&#34; width=&#34;960&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 4: Words that contribute to positive and negative sentiment in the IATF resolutions
+Figure 5: Top ten words that contribute to positive and negative sentiment
 &lt;/p&gt;
 &lt;/div&gt;
+&lt;p&gt;Another way of visualising the same information:&lt;/p&gt;
 &lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2b&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment2b-1.png&#34; alt=&#34;Average sentiment value for IATF resolutions by month&#34; width=&#34;768&#34; /&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment2b-1.png&#34; alt=&#34;Top ten words that contribute to positive and negative sentiment&#34; width=&#34;768&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 5: Average sentiment value for IATF resolutions by month
+Figure 6: Top ten words that contribute to positive and negative sentiment
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment2c&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment2c-1.png&#34; alt=&#34;Sentiment value across all resolutions by month&#34; width=&#34;1152&#34; /&gt;
+&lt;p&gt;These top ten words contributing to positive and negative sentiments are consistent with what we would expect from a body of text that talk about a health emergency i.e., pandemic and consistent with the nature of the text itself i.e., resolutions which talk about the issues related to the situation/context and actions to be taken in response.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-5-what-is-the-overall-sentiment-value-of-each-resolution&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 5: What is the overall sentiment value of each resolution?&lt;/h3&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment3c&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment3c-1.png&#34; alt=&#34;Average sentiment value per resolution&#34; width=&#34;768&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 6: Sentiment value across all resolutions by month
+Figure 7: Average sentiment value per resolution
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment3&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment3-1.png&#34; alt=&#34;The most common words in the IATF resolutions&#34; width=&#34;100%&#34; /&gt;
+&lt;p&gt;Eight out of the 46 resolutions analysed had a negative average sentiment value. These resolutions were during the early stages of the response (January 2020) and in the height of the response (late April 2020 to May 2020).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-6-what-is-the-average-sentiment-value-contribution-of-specific-words&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Question 6: What is the average sentiment value contribution of specific words&lt;/h3&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment4a&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment4a-1.png&#34; alt=&#34;Sentiment value of words across all resolutions&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 7: The most common words in the IATF resolutions
+Figure 8: Sentiment value of words across all resolutions
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment4&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment4-1.png&#34; alt=&#34;Most common positive and negative word in the IATF resolutions&#34; width=&#34;100%&#34; /&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:sentiment4b&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/applying-sentiment-analysis/index_files/figure-html/sentiment4b-1.png&#34; alt=&#34;Sentiment value of words across all resolutions by month&#34; width=&#34;1344&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 8: Most common positive and negative word in the IATF resolutions
+Figure 9: Sentiment value of words across all resolutions by month
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;

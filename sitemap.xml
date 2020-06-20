@@ -58,6 +58,11 @@
   </url>
   
   <url>
+    <loc>/tag/opinion-mining/</loc>
+    <lastmod>2020-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/philippines/</loc>
     <lastmod>2020-05-26T00:00:00+00:00</lastmod>
   </url>
@@ -89,6 +94,11 @@
   
   <url>
     <loc>/tag/sentiment-analysis/</loc>
+    <lastmod>2020-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/sentiment-lexicon/</loc>
     <lastmod>2020-06-18T00:00:00+00:00</lastmod>
   </url>
   
