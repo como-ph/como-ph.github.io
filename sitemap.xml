@@ -48,6 +48,11 @@
   </url>
   
   <url>
+    <loc>/author/como-philippines/</loc>
+    <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/author/ernest-guevarra/</loc>
     <lastmod>2020-06-18T00:00:00+00:00</lastmod>
   </url>
@@ -173,7 +178,12 @@
   </url>
   
   <url>
-    <loc>/author/como-philippines/</loc>
+    <loc>/tag/como-consortium/</loc>
+    <lastmod>2020-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/como-consortium/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -189,6 +199,16 @@
   
   <url>
     <loc>/tag/interventions/</loc>
+    <lastmod>2020-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/models/</loc>
+    <lastmod>2020-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/como-consortium-model/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
   </url>
   
