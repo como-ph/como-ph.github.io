@@ -65,12 +65,32 @@ W ~ &amp;amp; = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
 A ~ &amp;amp; = ~ 
 \begin{pmatrix} 
 \begin{pmatrix} -1 &amp;amp; 0 \\ 1 &amp;amp; -1 \end{pmatrix} &amp;amp; \ldots &amp;amp; 0 \\ 
-\vdots &amp;amp; \ddots \begin{pmatrix} -1 &amp;amp; 0 \\ 1 &amp;amp; -1 \end{pmatrix} \ddots  &amp;amp; \vdots \\ 
+\vdots &amp;amp; \ddots \begin{pmatrix} -1 &amp;amp; 0 \\ 1 &amp;amp; -1 \end{pmatrix} \ddots &amp;amp; \vdots \\ 
 0 &amp;amp; \ldots &amp;amp; \begin{pmatrix} -1 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix} 
 \end{pmatrix} \\
 \\
 \\
+p_{K_H} ~ &amp;amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ H &amp;lt; K_H \\ 
+1 ~ \text{for} ~ H \geq K_H \\
+\end{Bmatrix} \\
+\\
+p_{K_U} ~ &amp;amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ U &amp;lt; K_U \\ 
+1 ~ \text{for} ~ U \geq K_U \\
+\end{Bmatrix} \\
+\\
+p_{K_V} ~ &amp;amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ V &amp;lt; K_V \\ 
+1 ~ \text{for} ~ V \geq K_V \\
+\end{Bmatrix} \\
+\\
+\\
 &amp;amp; \text{where model variables are defined as:} \\
+\\
 \\
 S ~ &amp;amp; = ~ \text{Susceptible} \\
 E ~ &amp;amp; = ~ \text{Infected and incubating} \\
@@ -84,14 +104,33 @@ U_c ~ &amp;amp; = ~ \text{Severe infection: hospitalised and requiring ICU but p
 V ~ &amp;amp; = ~ \text{Severe infection: hospitalised in ICU and on a ventilator} \\
 V_c ~ &amp;amp; = ~ \text{Severe infection: hospitalised in ICU requiring a ventilator but not on one} \\
 \\
+\\
 &amp;amp; \text{and model parameters are defined as:} \\
 \\
-W_{home} ~ &amp;amp; = ~ \text{} \\
-W_{work} ~ &amp;amp; = ~ \text{} \\
-W_{school} ~ &amp;amp; = ~ \text{} \\
-W_{other} ~ &amp;amp; = ~ \text{} \\
-\mu ~ &amp;amp; = ~ \text{} \\
-b ~ &amp;amp; = ~ \text{} \\
+\\
+W_{home} ~ &amp;amp; = ~ 
+\begin{aligned} 
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp;amp; \text{number of potentially infectious contacts at home per person per day} 
+\end{aligned} \\
+W_{work} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp;amp; \text{number of potentially infectious contacts at work per person per day}
+\end{aligned} \\
+W_{school} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp;amp; \text{number of potentially infectious contacts at work per person per day} 
+\end{aligned} \\
+W_{other} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\
+&amp;amp; \text{number of potentially infectious societal contacts per person per day} 
+\end{aligned} \\
+\mu ~ &amp;amp; = ~ \frac{1}{\text{Age-dependent non-covid related death rate}} \\
+b ~ &amp;amp; = ~ \frac{1}{\text{Age-dependent fertility rate}} \\
+\alpha ~ &amp;amp; = ~ \frac{1}{\text{Duration in each category}} \\
 p ~ &amp;amp; = ~ \text{Probability of infection given a single contact} \\
 \gamma ~ &amp;amp; = ~ \frac{1}{\text{Duration of incubation period}} \\
 \rho ~ &amp;amp; = ~ \text{Relative infectiousness of incubating phase per contact} \\
@@ -109,10 +148,18 @@ p_{ifr} ~ &amp;amp; = ~ \text{Probability of an infection being fatal by age} \\
 \nu_V ~ &amp;amp; = ~ \text{Duration of ventilated infection} \\
 \delta_H ~ &amp;amp; = ~ \text{Probability of death for a hospitalised infection} \\
 \delta_{H_c} ~ &amp;amp; = ~ \text{Probability of death for an infection requiring hospital not get} \\
-\delta_U ~ &amp;amp; = ~ \text{} \\
-\delta_{U_c} ~ &amp;amp; = ~ \text{} \\
-\delta_V ~ &amp;amp; = ~ \text{} \\
-\delta_{V_c} ~ &amp;amp; = ~ \text{} \\
+\delta_U ~ &amp;amp; = ~ \text{Maximum death probability for a hospitalized infection requiring ICU admission} \\
+\delta_{U_c} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Maximum death probability for a hospitalized infection that} \\
+&amp;amp; \text{would require ICU admission but was not admitted to the ICU} 
+\end{aligned} \\
+\delta_V ~ &amp;amp; = ~ \text{Maximum death probability for a hospitalized infection requiring a ventilator} \\
+\delta_{V_c} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Maximum death probability for a hospitalized infection that} \\ 
+&amp;amp; \text{would require a ventilator but did not get one}
+\end{aligned} \\
 p_U ~ &amp;amp; = ~ \text{Probability of an infected patient needing ICU} \\
 p_V ~ &amp;amp; = ~ \text{Probability of an infected patient needing ICU and a ventilator} \\
 p_{K_H} ~ &amp;amp; = ~ \text{Decision to assign a patient a hospital bed depending on capacity} \\
