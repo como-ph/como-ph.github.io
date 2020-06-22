@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>parameters | CoMo Philippines</title>
+    <link>/tag/parameters/</link>
+      <atom:link href="/tag/parameters/index.xml" rel="self" type="application/rss+xml" />
+    <description>parameters</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/img/como-ph.png</url>
+      <title>parameters</title>
+      <link>/tag/parameters/</link>
+    </image>
+    
+    <item>
+      <title>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model</title>
+      <link>/post/specifying-covid19-model-parameters/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/specifying-covid19-model-parameters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The COVID-19 Modelling (CoMo) Consortium Model</title>
+      <link>/post/como-consortium-model/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/como-consortium-model/</guid>
+      <description>
+
+
+&lt;p&gt;The age structured SEIR model with infected compartments stratified by symptoms, severity and treatment seeking and access.&lt;/p&gt;
+&lt;p&gt;The model uses publicly available country-specific data to define the population structure &lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; as a model input. The model interface uses publicly available country-specific data on cases and mortality &lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; for visual calibration of model parameters to user selected baseline scenarios. More elaborate calibration methods are under consideration but are not a priority since the system is unidentifiable and therefore calibration will be entirely dependent on user-selected baseline scenarios.&lt;/p&gt;
+&lt;p&gt;The model interface can be found here: &lt;a href=&#34;https://comomodel.net/&#34; class=&#34;uri&#34;&gt;https://comomodel.net/&lt;/a&gt;. The equations for the basic model structure follow (Equation 1).&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ \begin{aligned}
+\frac{dS}{dt} ~  &amp;amp; = ~ -S ~ \circ ~ \Lambda ~ + ~ \omega R ~ + ~ A ~ \cdot ~ S ~ - ~ \mu ~ \cdot ~ S ~ + ~ bP \\
+\\
+\frac{dE}{dt} ~ &amp;amp; = ~ S ~ \circ ~ \Lambda ~ - ~ \gamma E ~ + ~ A ~ \cdot ~ E ~ - ~ \mu ~ \cdot ~ E \\
+\\
+\frac{dI}{dt} ~ &amp;amp; = ~ \gamma(1 ~ - ~ p_{clin})(1 ~ - ~ p_{ihr}) ~ \cdot ~ E ~ - ~ v_I I ~ + ~ A ~ \cdot ~ I ~ - ~ \mu ~ \cdot ~ I \\
+\\
+\frac{dC}{dt} ~ &amp;amp; = ~ \gamma p_{clin}(1 ~ - ~ p_{ihr}) ~ \cdot ~ E ~ - ~ v_I C ~ + ~ A ~ \cdot ~ C ~ - ~ \mu \cdot C \\
+\\
+\frac{dR}{dt} ~ &amp;amp; = ~ v_I (I ~ + ~ C) ~ + ~ A ~ \cdot ~ R ~ - ~ \omega R ~ - ~ \mu ~ \cdot ~ R ~ + ~ (1 ~ - ~ \delta_H p_{ifr})v_H ~ \cdot ~ H \\
+ ~ &amp;amp; + ~ (1 ~ - ~ \delta_{H_c} p_{ifr})v_H ~ \cdot ~ H ~ + ~ (1 ~ - ~ \delta_U p_{ifr})v_U ~ \cdot ~ U \\
+ ~ &amp;amp; + ~ (1 ~ - ~ \delta_{U_c} p_{ifr})v_U ~ \cdot ~ U ~ + ~ (1 ~ - ~ \delta_{V} p_{ifr})v_V ~ \cdot ~ V \\
+ ~ &amp;amp; + ~ (1 ~ - ~ \delta_{V_c} p_{ifr})v_V ~ \cdot ~ V \\
+\\
+\frac{dH}{dt} ~ &amp;amp; = ~ p_{ihr}(1 ~ - ~ p_U)(1 ~ - ~ p{K_H})\gamma E ~ - ~ v_H H ~ + ~ A ~ \cdot ~ H ~ - ~ \mu ~ \cdot ~ H \\
+\\
+\frac{dH_c}{dt} ~ &amp;amp; = ~ p_{ihr}(1 ~ - ~ p_U)p_{K_H}\gamma E ~ - ~ v_H H_c ~ + ~ A ~ \cdot ~ H_c ~ - ~ \mu ~ \cdot ~ H_c \\
+\\
+\frac{dU}{dt} ~ &amp;amp; = ~ p_{ihr} p_U (1 ~ - ~ p_{K_U})(1 ~ - ~ p_V)\gamma E ~ - ~ v_U U ~ + ~ A ~ \cdot ~ U ~ - ~ \mu ~ \cdot ~ U \\
+\\
+\frac{dU_c}{dt} ~ &amp;amp; = ~ p_{ihr} p_U p_{K_U} (1 ~ - ~ p_v)\gamma E ~ - ~ v_U U_c ~ + ~ A ~ \cdot ~ U_c ~ - ~ \mu ~ \cdot ~ U_c \\
+\\
+\frac{dV}{dt} ~ &amp;amp; = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})(1 ~ - ~ p_{K_V})p_V \gamma E ~ - ~ v_V V ~ + ~ A ~ \cdot ~ V ~ - ~ \mu ~ \cdot ~ V \\
+\\
+\frac{dV_c}{dt} ~ &amp;amp; = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})p_{K_V} p_V \gamma E ~ - ~ v_V V_c ~ + ~ A ~ \cdot ~ V_c ~ - ~ \mu ~ \cdot ~ V_c \\
+\\
+\\
+P ~ &amp;amp; = ~ (S ~ + ~ E ~ + ~ I ~ + ~ R ~ + ~ H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c) \\
+\\
+\\
+s ~ &amp;amp; = ~ 1 ~ + ~ a ~ cos \left (2\pi \frac{ \left (t ~ - ~ \left (\frac{365.25\phi}{12} \right) \right ) ~ + ~ t_{in}}{365.25} \right) \\
+\\
+\\
+W ~ &amp;amp; = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
+\\
+\\
+\Lambda ~ &amp;amp; = ~ p ~ s ~ W ~ \cdot ~ \left (\frac{\rho E ~ + ~ I ~ + ~ C ~ + ~ \rho_s ~ \times ~ (H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c)}{P}  \right ) \\
+\\
+\\
+A ~ &amp;amp; = ~ 
+\begin{pmatrix} 
+\begin{pmatrix} -1 &amp;amp; 0 \\ 1 &amp;amp; -1 \end{pmatrix} &amp;amp; \ldots &amp;amp; 0 \\ 
+\vdots &amp;amp; \ddots \begin{pmatrix} -1 &amp;amp; 0 \\ 1 &amp;amp; -1 \end{pmatrix} \ddots &amp;amp; \vdots \\ 
+0 &amp;amp; \ldots &amp;amp; \begin{pmatrix} -1 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix} 
+\end{pmatrix} \\
+\\
+\\
+p_{K_H} ~ &amp;amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ H &amp;lt; K_H \\ 
+1 ~ \text{for} ~ H \geq K_H \\
+\end{Bmatrix} \\
+\\
+p_{K_U} ~ &amp;amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ U &amp;lt; K_U \\ 
+1 ~ \text{for} ~ U \geq K_U \\
+\end{Bmatrix} \\
+\\
+p_{K_V} ~ &amp;amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ V &amp;lt; K_V \\ 
+1 ~ \text{for} ~ V \geq K_V \\
+\end{Bmatrix} \\
+\\
+\\
+&amp;amp; \text{where model variables are defined as:} \\
+\\
+\\
+S ~ &amp;amp; = ~ \text{Susceptible} \\
+\\
+E ~ &amp;amp; = ~ \text{Infected and incubating} \\
+\\
+I ~ &amp;amp; = ~ \text{Infected and asymptomatic following incubation} \\
+\\
+C ~ &amp;amp; = ~ \text{Infected and mildly symptomatic following incubation} \\
+\\
+R ~ &amp;amp; = ~ \text{Recovered and immune} \\
+\\
+H ~ &amp;amp; = ~ \text{Severe infection: hospitalised} \\
+\\
+H_c ~ &amp;amp; = ~ \text{Severe infection: not hospitalised due to lack of capacity} \\
+\\
+U ~ &amp;amp; = ~ \text{Severe infection: hospitalised in ICU} \\
+\\
+U_c ~ &amp;amp; = ~ \text{Severe infection: hospitalised and requiring ICU but placed in surge ward} \\
+\\
+V ~ &amp;amp; = ~ \text{Severe infection: hospitalised in ICU and on a ventilator} \\
+\\
+V_c ~ &amp;amp; = ~ \text{Severe infection: hospitalised in ICU requiring a ventilator but not on one} \\
+\\
+\\
+&amp;amp; \text{and model parameters are defined as:} \\
+\\
+\\
+W_{home} ~ &amp;amp; = ~ 
+\begin{aligned} 
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp;amp; \text{number of potentially infectious contacts at home per person per day} 
+\end{aligned} \\
+\\
+W_{work} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp;amp; \text{number of potentially infectious contacts at work per person per day}
+\end{aligned} \\
+\\
+W_{school} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp;amp; \text{number of potentially infectious contacts at work per person per day} 
+\end{aligned} \\
+\\
+W_{other} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Country-specific age-dependent contact matrix describing the} \\
+&amp;amp; \text{number of potentially infectious societal contacts per person per day} 
+\end{aligned} \\
+\\
+\mu ~ &amp;amp; = ~ \frac{1}{\text{Age-dependent non-covid related death rate}} \\
+\\
+b ~ &amp;amp; = ~ \frac{1}{\text{Age-dependent fertility rate}} \\
+\\
+\alpha ~ &amp;amp; = ~ \frac{1}{\text{Duration in each category}} \\
+\\
+p ~ &amp;amp; = ~ \text{Probability of infection given a single contact} \\
+\\
+\gamma ~ &amp;amp; = ~ \frac{1}{\text{Duration of incubation period}} \\
+\\
+\rho ~ &amp;amp; = ~ \text{Relative infectiousness of incubating phase per contact} \\
+\\
+p_{clin} ~ &amp;amp; = ~ \text{Proportion of all infections that ever develop symptoms} \\
+\\
+\nu_I ~ &amp;amp; = ~ \frac{1}{\text{Duration of infectious phase}} \\
+\\
+\rho_s ~ &amp;amp; = ~ \text{Relative number of contacts for hospitalised patients} \\
+\\
+\omega ~ &amp;amp; = ~ \frac{1}{\text{Duration of immunity}} \\
+\\
+\alpha ~ &amp;amp; = ~ \text{Relative variation in transmissibility throughout the year} \pm \text{a proportion} \\
+\\
+\phi ~ &amp;amp; = ~ \text{Month of peak in transmissibility} \\
+\\
+t_{in} ~ &amp;amp; = ~ \text{Start date} \\
+\\
+p_{ihr} ~ &amp;amp; = ~ \text{Probability of an infection being severe (requiring hospitalisation) by age} \\
+\\
+p_{ifr} ~ &amp;amp; = ~ \text{Probability of an infection being fatal by age} \\
+\\
+\nu_H ~ &amp;amp; = ~ \text{Duration of hospitalised infection} \\
+\\
+\nu_U ~ &amp;amp; = ~ \text{Duration of ICU infection} \\
+\\
+\nu_V ~ &amp;amp; = ~ \text{Duration of ventilated infection} \\
+\\
+\delta_H ~ &amp;amp; = ~ \text{Probability of death for a hospitalised infection} \\
+\\
+\delta_{H_c} ~ &amp;amp; = ~ \text{Probability of death for an infection requiring hospital not get} \\
+\\
+\delta_U ~ &amp;amp; = ~ \text{Maximum death probability for a hospitalized infection requiring ICU admission} \\
+\\
+\delta_{U_c} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Maximum death probability for a hospitalized infection that} \\
+&amp;amp; \text{would require ICU admission but was not admitted to the ICU} 
+\end{aligned} \\
+\\
+\delta_V ~ &amp;amp; = ~ \text{Maximum death probability for a hospitalized infection requiring a ventilator} \\
+\\
+\delta_{V_c} ~ &amp;amp; = ~ 
+\begin{aligned}
+&amp;amp; \text{Maximum death probability for a hospitalized infection that} \\ 
+&amp;amp; \text{would require a ventilator but did not get one}
+\end{aligned} \\
+\\
+p_U ~ &amp;amp; = ~ \text{Probability of an infected patient needing ICU} \\
+\\
+p_V ~ &amp;amp; = ~ \text{Probability of an infected patient needing ICU and a ventilator} \\
+\\
+p_{K_H} ~ &amp;amp; = ~ \text{Decision to assign a patient a hospital bed depending on capacity} \\
+\\
+p_{K_U} ~ &amp;amp; = ~ \text{Decision to assign a patient an ICU bed depending on capacity} \\
+\\
+p_{K_V} ~ &amp;amp; = ~ \text{Decision to assign a patient a ventilator depending on capacity}
+\end{aligned} \]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;UN Department of Economic and Social Affairs Population Dynamics. Available
+from: &lt;a href=&#34;https://population.un.org/wpp/Download/Standard/Population/&#34; class=&#34;uri&#34;&gt;https://population.un.org/wpp/Download/Standard/Population/&lt;/a&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;European Centre for Disease Prevention and Control. Available from:
+&lt;a href=&#34;https://www.ecdc.europa.eu/en&#34; class=&#34;uri&#34;&gt;https://www.ecdc.europa.eu/en&lt;/a&gt;.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

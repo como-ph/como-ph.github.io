@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CoMo Philippines</title>
+    <link>/author/como-philippines/</link>
+      <atom:link href="/author/como-philippines/index.xml" rel="self" type="application/rss+xml" />
+    <description>CoMo Philippines</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Tue, 26 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/author/como-philippines/avatar_hu0c9bb8f01cc799a37c014d74fcb211e3_13990_270x270_fill_lanczos_center_2.png</url>
+      <title>CoMo Philippines</title>
+      <link>/author/como-philippines/</link>
+    </image>
+    
+    <item>
+      <title>Use of text analysis and topic modelling in policy analysis</title>
+      <link>/project/topic-modelling/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/topic-modelling/</guid>
+      <description>&lt;p&gt;In this project we explore the potential use of text anlaysis and topic modelling in assessing and potentially measuring the impact of various methematical modelling efforts in shaping government policy with regard to responding to the COVID-19 pandemic.&lt;/p&gt;
+&lt;p&gt;We propose to use the Philippines as a case study for this research. Several groups and individuals within the Philippines have proferred predictions on the course of the pandemic in the country. Particularly, these groups or individuals have predicted through their models the possible effects of various non-pharmaceutical interventions on the evolution of the pandemic particularly on the numbers of cases and deaths and their temporal and spatial distribution. Based on these, they have offered recommendations on what should be done further to mitigate these predicted outcomes. On the other hand, the national government has indicated that it will make policies and take action based on scientific evidence and has even commissioned a team of scientists to specifically perform mathenmatical modelling to generate this scientific evidence to guide its policy making.&lt;/p&gt;
+&lt;p&gt;We propose to quantify the impact of the best available scientific evidence with regard to the COVID-19 pandemic on the policies formulated and enacted by the Philippine government. Specifically, we will measure the degree of fit between the themes/topics focused on by the government&amp;rsquo;s policies with the themes/topics of the recommendations based on the scientific evidence using text analysis and topic modelling.&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Infectious disease modelling and policy</title>
+      <link>/project/policy-analysis/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/policy-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Applying the CoMo Consortium model to the Philippines</title>
+      <link>/project/como-ph/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/como-ph/</guid>
+      <description>&lt;p&gt;The application of the CoMo Consortium model to the Philippines context is the main project of the CoMo Philippines team and is the reason for the formation of the team. The CoMo Consortium model is described 
+&lt;a href=&#34;https://www.tropicalmedicine.ox.ac.uk/files/news-files/comoconsortium_description_may2020.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; in more detail.&lt;/p&gt;
+&lt;p&gt;The CoMo Philippines team seeks to answer the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;How can the CoMo Consortium model inform preparations for a post-lockdown scenario?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What combination of interventions could work best in the Philippines?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The national team will compare the CoMo Consortium model against other, locally developed models. This will support the development of a local model that better reflects the dynamic local situation and appropriate responses to the COVID-19 epidemic in the Philippines. Other models being used are the official FASSTER COVID-19 module and the UP COVID-19 Pandemic Response Team model.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>COVID-19 International Modelling Consortium (CoMo)</title>
+      <link>/project/como/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/como/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An example preprint / working paper</title>
+      <link>/publication/preprint/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/preprint/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example journal article</title>
+      <link>/publication/journal-article/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example conference paper</title>
+      <link>/publication/conference-paper/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

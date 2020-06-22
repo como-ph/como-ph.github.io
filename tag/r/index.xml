@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R | CoMo Philippines</title>
+    <link>/tag/r/</link>
+      <atom:link href="/tag/r/index.xml" rel="self" type="application/rss+xml" />
+    <description>R</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/img/como-ph.png</url>
+      <title>R</title>
+      <link>/tag/r/</link>
+    </image>
+    
+    <item>
+      <title>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model</title>
+      <link>/post/specifying-covid19-model-parameters/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/specifying-covid19-model-parameters/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>modelling | CoMo Philippines</title>
+    <link>/tag/modelling/</link>
+      <atom:link href="/tag/modelling/index.xml" rel="self" type="application/rss+xml" />
+    <description>modelling</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-gb</language><copyright>© CoMo Philippines 2020</copyright><lastBuildDate>Tue, 26 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/img/como-ph.png</url>
+      <title>modelling</title>
+      <link>/tag/modelling/</link>
+    </image>
+    
+    <item>
+      <title>Use of text analysis and topic modelling in policy analysis</title>
+      <link>/project/topic-modelling/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/topic-modelling/</guid>
+      <description>&lt;p&gt;In this project we explore the potential use of text anlaysis and topic modelling in assessing and potentially measuring the impact of various methematical modelling efforts in shaping government policy with regard to responding to the COVID-19 pandemic.&lt;/p&gt;
+&lt;p&gt;We propose to use the Philippines as a case study for this research. Several groups and individuals within the Philippines have proferred predictions on the course of the pandemic in the country. Particularly, these groups or individuals have predicted through their models the possible effects of various non-pharmaceutical interventions on the evolution of the pandemic particularly on the numbers of cases and deaths and their temporal and spatial distribution. Based on these, they have offered recommendations on what should be done further to mitigate these predicted outcomes. On the other hand, the national government has indicated that it will make policies and take action based on scientific evidence and has even commissioned a team of scientists to specifically perform mathenmatical modelling to generate this scientific evidence to guide its policy making.&lt;/p&gt;
+&lt;p&gt;We propose to quantify the impact of the best available scientific evidence with regard to the COVID-19 pandemic on the policies formulated and enacted by the Philippine government. Specifically, we will measure the degree of fit between the themes/topics focused on by the government&amp;rsquo;s policies with the themes/topics of the recommendations based on the scientific evidence using text analysis and topic modelling.&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model</title>
+      <link>/post/specifying-covid19-model-parameters/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/specifying-covid19-model-parameters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Infectious disease modelling and policy</title>
+      <link>/project/policy-analysis/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/policy-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Applying the CoMo Consortium model to the Philippines</title>
+      <link>/project/como-ph/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/como-ph/</guid>
+      <description>&lt;p&gt;The application of the CoMo Consortium model to the Philippines context is the main project of the CoMo Philippines team and is the reason for the formation of the team. The CoMo Consortium model is described 
+&lt;a href=&#34;https://www.tropicalmedicine.ox.ac.uk/files/news-files/comoconsortium_description_may2020.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; in more detail.&lt;/p&gt;
+&lt;p&gt;The CoMo Philippines team seeks to answer the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;How can the CoMo Consortium model inform preparations for a post-lockdown scenario?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What combination of interventions could work best in the Philippines?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The national team will compare the CoMo Consortium model against other, locally developed models. This will support the development of a local model that better reflects the dynamic local situation and appropriate responses to the COVID-19 epidemic in the Philippines. Other models being used are the official FASSTER COVID-19 module and the UP COVID-19 Pandemic Response Team model.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>COVID-19 International Modelling Consortium (CoMo)</title>
+      <link>/project/como/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/como/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
